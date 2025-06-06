@@ -32,10 +32,8 @@ end
 worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 
 # config/puma.rb
-port ENV.fetch("PORT")
+port ENV.fetch("PORT") { 3000 }
 
-# Bind to all interfaces on the port to allow external access (important for Dokku)
-bind "tcp://0.0.0.0:#{ENV.fetch("PORT") { 3000 }}"
 
 # Specifies the `environment` that Puma will run in.
 environment rails_env
