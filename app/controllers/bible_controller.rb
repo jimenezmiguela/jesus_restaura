@@ -32,10 +32,6 @@ class BibleController < ApplicationController
     end
   end
 
-  def enter_verse
-    # Displays form to input verse reference
-  end
-
   def show_verse
     @reference = params[:reference]
     @book = session[:book] || "exodo"
