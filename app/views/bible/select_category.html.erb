@@ -1,0 +1,16 @@
+<h1>Jesus Restaura<h1>
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6 text-center">
+    <h2 style="color: #ff6b00; font-weight: 700;"><%= session[:book].capitalize %></h2>
+    <h4 class="text-secondary mb-4">Selecciona Acción</h4>
+
+    <%= form_with url: bible_set_category_path, method: :post, local: true do %>
+      <div class="form-check mb-3 text-start">
+        <%= radio_button_tag :category, "find_verse", true, class: "form-check-input", id: "category_find_verse" %>
+        <%= label_tag "category_find_verse", "Encontrar un Versículo", class: "form-check-label" %>
+      </div>
+
+      <%= submit_tag "Continuar", class: "btn btn-warning text-white" %>
+    <% end %>
+  </div>
+</div>

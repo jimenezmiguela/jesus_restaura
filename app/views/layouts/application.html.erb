@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>JesusRestaura</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>JesusRestaura.com</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", type: "module", defer: true %>
+</head>
 
-  <body>
+<body>
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ff6b00;">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/">📖 JesusRestaura.com</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container py-5">
     <%= yield %>
-  </body>
-</html>
+  </main>
+
+  <!-- Footer
