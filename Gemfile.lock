@@ -87,16 +87,15 @@ GEM
     bootsnap (1.18.6)
       msgpack (~> 1.2)
     builder (3.3.0)
-    capybara (3.39.2)
+    capybara (3.40.0)
       addressable
       matrix
       mini_mime (>= 0.1.3)
-      nokogiri (~> 1.8)
+      nokogiri (~> 1.11)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    cgi (0.5.0)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.3)
     crass (1.0.6)
@@ -105,14 +104,13 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     drb (2.2.3)
-    erb (4.0.4)
-      cgi (>= 0.3.3)
+    erb (5.0.1)
     erubi (1.13.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    importmap-rails (2.0.3)
+    importmap-rails (2.1.0)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
@@ -136,11 +134,10 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.9)
     minitest (5.25.5)
     msgpack (1.8.0)
     mutex_m (0.3.0)
-    net-imap (0.4.22)
+    net-imap (0.5.8)
       date
       net-protocol
     net-pop (0.1.2)
@@ -150,10 +147,7 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.15.7)
-      mini_portile2 (~> 2.8.2)
-      racc (~> 1.4)
-    nokogiri (1.15.7-x86_64-linux)
+    nokogiri (1.18.8-x86_64-darwin)
       racc (~> 1.4)
     pp (0.6.2)
       prettyprint
@@ -161,7 +155,7 @@ GEM
     psych (5.2.6)
       date
       stringio
-    public_suffix (5.1.1)
+    public_suffix (6.0.2)
     puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
@@ -211,8 +205,8 @@ GEM
       io-console (~> 0.5)
     rexml (3.4.1)
     rubyzip (2.4.1)
-    securerandom (0.3.2)
-    selenium-webdriver (4.9.0)
+    securerandom (0.4.1)
+    selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -229,9 +223,9 @@ GEM
     stringio (3.1.7)
     thor (1.3.2)
     timeout (0.4.3)
-    turbo-rails (2.0.12)
-      actionpack (>= 6.0.0)
-      railties (>= 6.0.0)
+    turbo-rails (2.0.16)
+      actionpack (>= 7.1.0)
+      railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     web-console (4.2.1)
@@ -250,11 +244,10 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.18)
+    zeitwerk (2.7.3)
 
 PLATFORMS
-  ruby
-  x86_64-linux
+  x86_64-darwin-20
 
 DEPENDENCIES
   bootsnap
@@ -276,4 +269,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.1.4
+   2.4.10
