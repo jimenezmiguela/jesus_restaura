@@ -1,4 +1,4 @@
-require_relative '../bible_reader'
-
-class Genesis
+module BibleReader
+  class Genesis
+  end
 end

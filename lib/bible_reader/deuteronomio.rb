@@ -1,4 +1,4 @@
-require_relative '../bible_reader'
-
-class Deuteromonio
+module BibleReader
+  class Deuteronomio
+  end
 end

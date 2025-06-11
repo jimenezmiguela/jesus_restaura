@@ -1,4 +1,4 @@
-require_relative '../bible_reader'
-
-class Exodo
+module BibleReader
+  class Exodo
+  end
 end

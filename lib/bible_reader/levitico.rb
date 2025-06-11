@@ -1,4 +1,4 @@
-require_relative '../bible_reader'
-
-class Levitico
+module BibleReader
+  class Levitico
+  end
 end
