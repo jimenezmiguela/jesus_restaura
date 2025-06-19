@@ -54,8 +54,4 @@ class BibleController < ApplicationController
 
     render :enter_verse
   end
-
-
-  def test_form
-  end
 end
