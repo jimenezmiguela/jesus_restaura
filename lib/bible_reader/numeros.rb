@@ -1,4 +1,4 @@
-require_relative '../bible_reader'
-
-class Numeros
+module BibleReader
+  class Numeros
+  end
 end
