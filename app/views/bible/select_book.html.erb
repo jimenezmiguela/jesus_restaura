@@ -1,17 +1,24 @@
-<h1>Jesus Restaura<h1>
+<h1 class="text-center mt-4 text-primary">📖 Jesus Restaura</h1>
 
-<div class="row justify-content-center mt-5">
-  <div class="col-md-6 text-center">
-    <h2 style="color: #ff6b00; font-weight: 700;">Biblia</h2>
-    <h4 class="text-secondary mb-4">Selecciona un Libro de la Biblia</h4>
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-sm-10">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h2 class="text-warning fw-bold mb-2">Biblia</h2>
+          <h5 class="text-secondary mb-4">Selecciona un Libro de la Biblia</h5>
 
-    <%= form_with url: bible_set_book_path, method: :post, local: true do %>
-      <div class="input-group">
-        <%= select_tag :book,
-          options_for_select(@books.map { |book| [book.capitalize, book] }),
-          class: "form-select" %>
-        <button type="submit" class="btn btn-warning text-white">Continuar</button>
+          <%= form_with url: bible_set_book_path, method: :post, local: true do %>
+            <div class="mb-3">
+              <%= select_tag :book,
+                    options_for_select(@books.map { |book| [book.capitalize, book] }),
+                    class: "form-select" %>
+            </div>
+
+            <%= submit_tag "Continuar", class: "btn btn-warning w-100 text-white fw-bold" %>
+          <% end %>
+        </div>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
