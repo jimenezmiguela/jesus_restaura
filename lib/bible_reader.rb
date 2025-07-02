@@ -3,6 +3,7 @@ require_relative "bible_reader/exodo"
 require_relative "bible_reader/levitico"
 require_relative "bible_reader/numeros"
 require_relative "bible_reader/deuteronomio"
+require_relative "bible_reader/mateo"
 
 module BibleReader
   extend self
@@ -12,7 +13,8 @@ module BibleReader
       "exodo" => Exodo.new,
       "levitico" => Levitico.new,
       "numeros" => Numeros.new,
-      "deuteronomio" => Deuteronomio.new
+      "deuteronomio" => Deuteronomio.new,
+      "mateo" => Mateo.new
     }
   end
 
@@ -22,7 +24,8 @@ module BibleReader
       "exodo",
       "levitico",
       "numeros",
-      "deuteronomio"
+      "deuteronomio",
+      "mateo"
     ]
   end
 
