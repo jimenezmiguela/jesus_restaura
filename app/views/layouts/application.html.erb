@@ -1,25 +1,25 @@
-<!DOCTYPE html>
-<html>
 <head>
-  <title>JesusRestaura.com</title>
+  <title>Jesus Restaura.com</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_include_tag "application", type: "module", defer: true %>
 </head>
 
 <body>
-  <!-- Header -->
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #ff6b00;">
+  <nav class="navbar navbar-dark" style="background-color: #ff6b00;">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="/">📖 JesusRestaura.com</a>
+      <a class="navbar-brand fw-bold" href="/">📖 Jesus Restaura.com</a>
     </div>
   </nav>
 
-  <!-- Main Content -->
-  <main class="container py-5">
+  <main class="py-5">
     <%= yield %>
   </main>
 
-  <!-- Footer
+  <footer class="bg-light text-center py-3 mt-5">
+    <small class="text-muted">© 2025 Jesus Restaura.com. All rights reserved.</small>
+  </footer>
+</body>
