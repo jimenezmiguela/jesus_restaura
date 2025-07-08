@@ -42,9 +42,9 @@ module BibleReader
       chapter_finish = chapter_start.sub("#{chapter}:", "#{chapter.to_i + 1}:")
     end
     selection = find_bible_selection(bible_book, chapter_start, chapter_finish)
-    transform_web_format_to_bible_verses(selection)
     close_file(open_web_file(book)[0])
-    selection.split("/n")
+    string_selection_with_new_line = convert_web_verses_to_new_line(selection)
+    convert_string_to_array(string_selection_with_new_line)
   end
 
   def find(word, book_name)
@@ -223,6 +223,12 @@ module BibleReader
     verse_request_web_format
   end
 
-  def transform_web_format_to_bible_verses(selection)
+  def convert_web_verses_to_new_line(text)
+    text.gsub!(/\d{3}:\d{3}/, "\n")
+    text.delete_prefix!("\n")
+  end
+
+  def convert_string_to_array(text)
+    text.split(/\n/)
   end
 end
