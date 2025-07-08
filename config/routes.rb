@@ -10,9 +10,13 @@ Rails.application.routes.draw do
   get  "/bible/verse",     to: "bible#enter_verse",     as: :bible_enter_verse
   post "/bible/verse",     to: "bible#show_verse",      as: :bible_show_verse
 
+  get  "/bible/chapter", to: "bible#enter_chapter", as: :bible_enter_chapter
+  post "/bible/chapter", to: "bible#show_chapter",  as: :bible_show_chapter
+
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       get 'verse', to: 'bible#verse'
     end
   end
+
 end
