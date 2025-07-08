@@ -4,6 +4,10 @@ class BibleController < ApplicationController
     # Renders enter_verse.html.erb by default
   end
 
+  def enter_chapter
+    # Renders app/views/bible/enter_chapter.html.erb by default
+  end
+
   def select_book
     @books = BibleReader.book_names
   end
@@ -26,6 +30,8 @@ class BibleController < ApplicationController
     session[:category] = params[:category]
     if session[:category] == "find_verse"
       redirect_to bible_enter_verse_path
+    elsif session[:category] == "find_chapter"
+      redirect_to bible_enter_chapter_path
     else
       flash[:alert] = "Unsupported action"
       redirect_to bible_select_category_path
@@ -55,7 +61,22 @@ class BibleController < ApplicationController
     render :enter_verse
   end
 
+  def show_chapter
+    @chapter_number = params[:chapter]
+    @book = session[:book] || "exodo"
 
-  def test_form
+    if @chapter_number.blank?
+      @error = "Por favor ingrese un capítulo."
+      return render :enter_chapter
+    end
+
+    begin
+      @chapter = BibleReader.find_chapter(@book, @chapter_number)
+    rescue => e
+      Rails.logger.error("Chapter lookup failed: #{e.message}")
+      @error = "Capítulo no encontrado o formato inválido."
+    end
+
+    render :enter_chapter
   end
 end

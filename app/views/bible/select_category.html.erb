@@ -1,4 +1,4 @@
-<h1>Jesus Restaura<h1>
+<h1>Jesus Restaura</h1>
 <div class="row justify-content-center mt-5">
   <div class="col-md-6 text-center">
     <h2 style="color: #ff6b00; font-weight: 700;"><%= session[:book].capitalize %></h2>
@@ -6,8 +6,13 @@
 
     <%= form_with url: bible_set_category_path, method: :post, local: true do %>
       <div class="form-check mb-3 text-start">
-        <%= radio_button_tag :category, "find_verse", true, class: "form-check-input", id: "category_find_verse" %>
+        <%= radio_button_tag :category, "find_verse", session[:category] == "find_verse", class: "form-check-input", id: "category_find_verse" %>
         <%= label_tag "category_find_verse", "Encontrar un Versículo", class: "form-check-label" %>
+      </div>
+
+      <div class="form-check mb-4 text-start">
+        <%= radio_button_tag :category, "find_chapter", session[:category] == "find_chapter", class: "form-check-input", id: "category_find_chapter" %>
+        <%= label_tag "category_find_chapter", "Encontrar un Capítulo", class: "form-check-label" %>
       </div>
 
       <%= submit_tag "Continuar", class: "btn btn-warning text-white" %>

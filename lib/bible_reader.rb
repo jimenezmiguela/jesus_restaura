@@ -42,10 +42,9 @@ module BibleReader
       chapter_finish = chapter_start.sub("#{chapter}:", "#{chapter.to_i + 1}:")
     end
     selection = find_bible_selection(bible_book, chapter_start, chapter_finish)
-    puts selection.class
     transform_web_format_to_bible_verses(selection)
-    puts wrap(selection, 75)
     close_file(open_web_file(book)[0])
+    selection.split("/n")
   end
 
   def find(word, book_name)
@@ -225,7 +224,5 @@ module BibleReader
   end
 
   def transform_web_format_to_bible_verses(selection)
-    selection.gsub(/[00]/, '')
-    selection
   end
 end
