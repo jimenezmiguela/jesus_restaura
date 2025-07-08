@@ -1,7 +1,6 @@
 
 Libro 01 Génesis
-001:001
-En el principio Dios{Después de "Dios", el hebreo tiene las dos letras "Aleph Tav" (la primera y la última letra del alfabeto
+001:001 En el principio Dios{Después de "Dios", el hebreo tiene las dos letras "Aleph Tav" (la primera y la última letra del alfabeto
 hebreo) como marcador gramatical.} creó los cielos y la tierra.
 001:002 La tierra estaba desordenada y vacía. La oscuridad cubría la superficie del abismo. El Espíritu de Dios se movía sobre la superficie de las aguas.
 001:003 Dijo Dios: Sea la luz. Y fue la luz.
