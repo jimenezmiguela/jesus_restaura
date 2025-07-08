@@ -3,27 +3,42 @@
   <h2 style="color: #ff6b00;"><%= session[:book].to_s.capitalize %></h2>
   <h4 class="text-muted">Ingresa un Versículo (ejemplo: 3:16)</h4>
 </div>
+=======
+<h1 class="text-center mt-4 text-primary">📖 Jesus Restaura</h1>
 
-<%= form_with url: bible_show_verse_path, method: :post, local: true, html: { class: "mb-4" } do %>
-  <div class="input-group">
-    <%= text_field_tag :reference, nil, class: "form-control", placeholder: "ejemplo: 3:16", autofocus: true %>
-    <button type="submit" class="btn btn-warning text-white">Encontrar Versículo</button>
+<div class="container">
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-6 col-sm-10">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h2 class="text-warning fw-bold mb-2">
+            <%= session[:book].to_s.capitalize.presence || "Libro" %>
+          </h2>
+          <h5 class="text-muted mb-4">Ingresa un Versículo <span class="text-secondary">(ejemplo: 3:16)</span></h5>
+
+          <%= form_with url: bible_show_verse_path, method: :post, local: true do %>
+            <div class="mb-3">
+              <%= text_field_tag :reference, nil, class: "form-control", placeholder: "ejemplo: 3:16", autofocus: true %>
+            </div>
+            <%= submit_tag "Encontrar Versículo", class: "btn btn-warning w-100 text-white fw-bold" %>
+          <% end %>
+        </div>
+      </div>
+
+      <% if @error.present? %>
+        <div class="alert alert-danger mt-4 text-center" role="alert">
+          <%= @error %>
+        </div>
+      <% elsif @verse.present? %>
+        <div class="card border-warning mt-4">
+          <div class="card-header bg-warning text-white fw-bold">
+            Resultado de búsqueda: <%= session[:book].to_s.capitalize %> <%= @reference %>
+          </div>
+          <div class="card-body" style="background-color: #fff7e6;">
+            <pre class="mb-0" style="white-space: pre-wrap;"><%= @verse %></pre>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
-<div id="verse_result">
-  <% if @error.present? %>
-    <div class="alert alert-danger" role="alert">
-      <%= @error %>
-    </div>
-  <% elsif @verse.present? %>
-    <div class="card border-warning mt-4">
-      <div class="card-header bg-warning text-white fw-bold">
-        Resultado de búsqueda: <%= session[:book].to_s.capitalize %> <%= @reference %>
-      </div>
-      <div class="card-body" style="background-color: #fff7e6;">
-        <pre class="mb-0" style="white-space: pre-wrap;"><%= @verse %></pre>
-      </div>
-    </div>
-  <% end %>
 </div>

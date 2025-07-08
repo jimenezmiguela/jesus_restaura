@@ -79,4 +79,5 @@ class BibleController < ApplicationController
 
     render :enter_chapter
   end
+
 end
