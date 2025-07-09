@@ -4,6 +4,7 @@ require_relative 'bible_reader/levitico'
 require_relative 'bible_reader/numeros'
 require_relative 'bible_reader/deuteronomio'
 require_relative 'bible_reader/mateo'
+require_relative 'bible_reader/salmos'
 
 module BibleReader
   extend self
@@ -14,6 +15,7 @@ module BibleReader
       'levitico' => Levitico.new,
       'numeros' => Numeros.new,
       'deuteronomio' => Deuteronomio.new,
+      'salmos' => Salmos.new,
       'mateo' => Mateo.new }
   end
 
@@ -24,6 +26,7 @@ module BibleReader
       levitico
       numeros
       deuteronomio
+      salmos
       mateo
     ]
   end
@@ -38,6 +41,10 @@ module BibleReader
       chapter_finish[0] = '' if chapter_finish.chars.count > 7
     elsif chapter.chars.count == 2
       chapter_start = default.sub('00:', "#{chapter}:")
+      chapter_start.dup
+      chapter_finish = chapter_start.sub("#{chapter}:", "#{chapter.to_i + 1}:")
+    elsif chapter.chars.count == 3
+      chapter_start = default.sub('000:', "#{chapter}:")
       chapter_start.dup
       chapter_finish = chapter_start.sub("#{chapter}:", "#{chapter.to_i + 1}:")
     end
@@ -101,44 +108,34 @@ module BibleReader
     next_verse = verse_request.dup
     if next_verse[5].to_i == 0 and next_verse[6].to_i == 9
       # ex: 1:9
-      puts 'ok'
       next_verse[5] = 1.to_s
       next_verse[6] = 0.to_s
     elsif next_verse[5].to_i == 1 and next_verse[6].to_i == 9
       # ex: 1:19
-      puts 'ok'
       next_verse[5] = 2.to_s
       next_verse[6] = 0.to_s
     elsif next_verse[5].to_i == 2 and next_verse[6].to_i == 9
-      puts 'ok'
       next_verse[5] = 3.to_s
       next_verse[6] = 0.to_s
     elsif next_verse[5].to_i == 3 and next_verse[6].to_i == 9
-      puts 'ok'
       next_verse[5] = 4.to_s
       next_verse[6] = 0.to_s
     elsif next_verse[5].to_i == 4 and next_verse[6].to_i == 9
-      puts 'ok'
       next_verse[5] = 5.to_s
       next_verse[6] = 0.to_s
     elsif next_verse[5].to_i == 5 and next_verse[6].to_i == 9
-      puts 'ok'
       next_verse[5] = 6.to_s
       next_verse[6] = 0.to_s
     elsif next_verse[5].to_i == 6 and next_verse[6].to_i == 9
-      puts 'ok'
       next_verse[5] = 7.to_s
       next_verse[6] = 0.to_s
     elsif next_verse[5].to_i == 7 and next_verse[6].to_i == 9
-      puts 'ok'
       next_verse[5] = 8.to_s
       next_verse[6] = 0.to_s
     elsif next_verse[5].to_i == 8 and next_verse[6].to_i == 9
-      puts 'ok'
       next_verse[5] = 9.to_s
       next_verse[6] = 0.to_s
     elsif next_verse[5].to_i == 9 and next_verse[6].to_i == 9
-      puts 'ok'
       next_verse[4] = 1.to_s
       next_verse[5] = 0.to_s
       next_verse[6] = 0.to_s
@@ -210,13 +207,15 @@ module BibleReader
       elsif (verse_request_web_format.chars.find_index(':') == 1) and (verse_request_web_format.chars.count == 4) # ex '1:11'
         verse_request_web_format = verse_request_web_format.chars.insert(0, '00').join('')
         verse_request_web_format = verse_request_web_format.chars.insert(4, '0').join('')
-        puts verse_request_web_format
-        puts verse_request_web_format.class
       elsif (verse_request_web_format.chars.find_index(':') == 2) and (verse_request_web_format.chars.count == 4) # ex '11:1'
         verse_request_web_format = verse_request_web_format.chars.insert(0, '0').join('')
         verse_request_web_format = verse_request_web_format.chars.insert(4, '00').join('')
       elsif (verse_request_web_format.chars.find_index(':') == 2) and (verse_request_web_format.chars.count == 5) # ex '11:11'
         verse_request_web_format = verse_request_web_format.chars.insert(0, '0').join('')
+        verse_request_web_format = verse_request_web_format.chars.insert(4, '0').join('')
+      elsif (verse_request_web_format.chars.find_index(':') == 3) and (verse_request_web_format.chars.count == 5) # ex '111:1'
+        verse_request_web_format = verse_request_web_format.chars.insert(4, '00').join('')
+      elsif (verse_request_web_format.chars.find_index(':') == 3) and (verse_request_web_format.chars.count == 6) # ex '111:11'
         verse_request_web_format = verse_request_web_format.chars.insert(4, '0').join('')
       end
     end
