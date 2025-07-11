@@ -43,6 +43,7 @@ module BibleReader
       chapter_start = default.sub('00:', "#{chapter}:")
       chapter_start.dup
       chapter_finish = chapter_start.sub("#{chapter}:", "#{chapter.to_i + 1}:")
+      chapter_finish[0] = '' if chapter_finish == '0100:001'
     elsif chapter.chars.count == 3
       chapter_start = default.sub('000:', "#{chapter}:")
       chapter_start.dup
