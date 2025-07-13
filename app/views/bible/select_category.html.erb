@@ -21,6 +21,11 @@
               <%= label_tag "category_find_chapter", "Encontrar un Capítulo", class: "form-check-label" %>
             </div>
 
+            <div class="form-check text-start mb-4">
+              <%= radio_button_tag :category, "find_search", session[:category] == "find_search", class: "form-check-input", id: "category_find_search" %>
+              <%= label_tag "category_find_search", "Una Palabra", class: "form-check-label" %>
+            </div>
+
             <%= submit_tag "Continuar", class: "btn btn-warning w-100 text-white fw-bold" %>
           <% end %>
         </div>

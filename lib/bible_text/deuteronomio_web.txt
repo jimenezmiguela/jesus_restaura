@@ -3,7 +3,8 @@ Libro 05 Deuteronomio
 el Jordán en el desierto, en el Arabá frente a Suf, entre Parán, Tofel, Labán, Hazerot y Dizahab.
 001:002 Hay once días de viaje desde Horeb por el camino del monte Seir. a Cades­barnea.
 001:003 Aconteció en el año cuarenta, en el mes undécimo,
-El primer día del mes, Moisés habló a los hijos de Israel, conforme a todo lo que Jehová le había mandado acerca de ellos, 001:004 después que venció a Sehón rey de los amorreos,
+El primer día del mes, Moisés habló a los hijos de Israel, conforme a todo lo que Jehová le había mandado acerca de ellos,
+001:004 después que venció a Sehón rey de los amorreos,
 que habitaba en Hesbón, y Og rey de Basán, que habitaba en Astarot, en Edrei.
 001:005 Al otro lado del Jordán, en la tierra de Moab, Moisés comenzó a declarar Esta ley, diciendo:
 001:006 Jehová nuestro Dios nos habló en Horeb, diciendo: Vosotros habéis vivido suficiente tiempo en esta montaña:
@@ -52,7 +53,8 @@ para mostraros el camino por donde anduvieseis, y con nube de día.
 001:035 No verá hombre alguno de estos, de esta mala generación, la buena tierra que juré que daría a vuestros padres,
 001:036 salvo Caleb hijo de Jefone; él la verá; y a él
 ¿Daré yo la tierra que él pisó y a sus hijos, por cuanto cumplió siguiendo a Jehová?
-001:037 También Jehová se enojó contra mí por vosotros, y dijo: Tú también 001:038 Josué hijo de Nun, el
+001:037 También Jehová se enojó contra mí por vosotros, y dijo: Tú también
+001:038 Josué hijo de Nun, el
 cual está delante de ti, él entrará allá; anímale, porque él la hará heredar a Israel.
 001:039 Y vuestros niños, de los cuales dijisteis que serían por presa, y vuestros hijos, que hoy no saben ni el bien ni el mal, ellos entrarán allá, y a ellos la daré, y ellos la poseerán.
 001:040 Pero vosotros volveos y partid al desierto, camino del Mar Rojo.
@@ -67,8 +69,8 @@ contra el mandamiento de Jehová, y se ensoberbecieron, y subieron al monte.
 001:046 Y permanecisteis en Cades muchos días, conforme a los días que habíais estado allí.
 002:001 Después nos volvimos y emprendimos nuestro viaje hacia el desierto por
 el camino del Mar Rojo, como Jehová me había dicho, y rodeamos el monte de Seir muchos días.
-002:002 Jehová me habló, diciendo: 002:003
-Bastante habéis rodeado este monte; volveos hacia el norte.
+002:002 Jehová me habló, diciendo:
+002:003 Bastante habéis rodeado este monte; volveos hacia el norte.
 002:004 Manda al pueblo, diciendo: Pasaréis por el territorio de vuestros hermanos los hijos de Esaú, que habitan en Seir, para que no tengan temor de
 vosotros; guardaos, pues, mucho por vuestras vidas, 002:005 no os
 daré de su tierra ni aun lo que queda de la planta de
@@ -86,9 +88,10 @@ Nos volvimos y pasamos por el camino del desierto de Moab.
 002:013 Ahora levántate y cruza el arroyo Zered. Pasamos el arroyo Zered.
 002:014 Los días en que salimos de Cades­barnea, hasta que llegamos a Jerusalén. Y pasaron el arroyo de Zered; y fueron treinta y ocho años, hasta que toda la generación de los hombres de guerra fue acabada de en medio del campamento, como Jehová les había jurado.
 002:015 Además la mano de Jehová estuvo contra ellos para destruirlos de en medio del campamento, hasta acabarlos.
-002:016 Y aconteció que cuando todos los hombres de guerra fueron consumidos y muertos de en medio del pueblo, 002:017 que
-Jehová me habló, diciendo:
-002:018 Pasaréis hoy Ar, límite de Moab, 002:019 y llegaréis delante de los hijos de Amón,
+002:016 Y aconteció que cuando todos los hombres de guerra fueron consumidos y muertos de en medio del pueblo,
+002:017 que Jehová me habló, diciendo:
+002:018 Pasaréis hoy Ar, límite de Moab,
+002:019 y llegaréis delante de los hijos de Amón,
 No los molestéis, ni os enemistéis con ellos; porque no os daré por heredad la tierra de los hijos de Amón, pues a los hijos de Lot la he dado por heredad.
 002:020 (También ésta es considerada como tierra de gigantes; allí habitaron gigantes antes, a los cuales los amonitas llaman zomzomeos,
 002:021 un pueblo grande y numeroso y alto como los anaceos;
@@ -104,7 +107,8 @@ de ti sobre los pueblos que están debajo de todo el cielo, los cuales oirán tu
 002:026 Envié mensajeros desde el desierto de Cademot a Sehón rey de Hesbón con palabras de paz, diciendo:
 002:027 Pasaré por tu tierra; por el camino iré, sin apartarme a la diestra ni a la izquierda.
 002:028 Me venderás la comida por dinero, y yo comeré; y me darás
-agua por dinero, y yo beberé; solamente que me dejes pasar a pie, 002:029 como los hijos de Esaú que habitan en Seir, y
+agua por dinero, y yo beberé; solamente que me dejes pasar a pie,
+002:029 como los hijos de Esaú que habitan en Seir, y
 los moabitas
 que habitan en Ar, me lo hicieron hasta que pase el Jordán a la tierra que nos da Jehová nuestro Dios.
 002:030 Pero Sehón rey de Hesbón no quiso dejarnos pasar junto a él; porque Jehová tu Dios endureció su espíritu, y obstinó su corazón para entregarlo en tus manos, como sucede hoy.
@@ -185,9 +189,11 @@ para cumplir los diez mandamientos, y los escribió en dos tablas de piedra.
 004:014 Jehová me mandó en aquel tiempo que os enseñase los estatutos
 y ordenanzas, para que las pusierais por obra en la tierra a la cual pasáis para tomar posesión de ella.
 004:015 Mirad, pues, mucho por vuestras vidas, porque no habéis visto ninguna manera de la forma en que Jehová os habló en Horeb de en medio del fuego.
-004:016 Para que no os corrompáis, y hagáis para vosotros imagen de escultura, forma de cualquier figura, semejanza de varón o hembra, 004:017 semejanza de cualquier animal que esté en la tierra, semejanza de
+004:016 Para que no os corrompáis, y hagáis para vosotros imagen de escultura, forma de cualquier figura, semejanza de varón o hembra,
+004:017 semejanza de cualquier animal que esté en la tierra, semejanza de
 cualquier ave alada que vuele en los cielos, 004:018 semejanza de cualquier animal que se arrastre sobre la tierra, semejanza
-de cualquier pez que esté en el agua debajo de la tierra; 004:019 y para que no alces tus ojos al cielo, y veas
+de cualquier pez que esté en el agua debajo de la tierra;
+004:019 y para que no alces tus ojos al cielo, y veas
 el sol, la luna, las estrellas y todo el ejército de los cielos; y adóralos y sírvelos, conforme a lo cual ha concedido Jehová tu Dios a todos los pueblos debajo de todos los cielos.
 004:020 Pero a vosotros os tomó Jehová, y os ha sacado del horno de hierro, de Egipto, para que seáis el pueblo de su heredad como en este día.
 004:021 Además, Jehová se enojó contra mí por causa de vosotros,
@@ -195,7 +201,8 @@ y juré que no pasaría el Jordán, ni entraría en la buena tierra que Jehová 
 004:022 pero yo moriré en esta tierra, y no pasaré el Jordán; pero vosotros pasaréis, y poseeréis la buena tierra.
 004:023 Guardaos por vuestras vidas, no sea que os olvidéis del pacto de Jehová,
 tu Dios, el cual él hizo contigo, y te hará una imagen tallada según la imagen de todas las cosas que Jehová tu Dios te ha prohibido.
-004:024 Porque Jehová tu Dios es fuego consumidor, Dios celoso. 004:025 Cuando engendréis hijos, y nietos, y tengáis sed,
+004:024 Porque Jehová tu Dios es fuego consumidor, Dios celoso.
+004:025 Cuando engendréis hijos, y nietos, y tengáis sed,
 habrán estado mucho tiempo en la tierra, y se corromperán, y harán escultura en forma de cualquier cosa, e harán lo malo ante los ojos de Jehová vuestro Dios, para provocarlo a ira;
 004:026 Pongo hoy por testigos contra vosotros a los cielos y a la tierra,
 que pronto pereceréis completamente de la tierra a la cual pasáis el Jordán para tomar posesión de ella; no prolongaréis vuestros días sobre ella, sino que seréis completamente destruidos.
@@ -340,9 +347,11 @@ lo cual no sabías tú, ni tus padres la habían conocido, para hacerte saber qu
 008:005 Considerarás en tu corazón que como el hombre disciplina a su hijo, Así te castiga Jehová tu Dios.
 008:006 Guardarás los mandamientos de Jehová tu Dios, andando en tu presencia. en sus caminos, y a temerle.
 008:007 Porque Jehová tu Dios te trae a una tierra buena, a una tierra
-de arroyos de aguas, de manantiales y de aguas subterráneas que fluyen hacia valles y colinas; 008:008 una tierra de trigo y de cebada, de
+de arroyos de aguas, de manantiales y de aguas subterráneas que fluyen hacia valles y colinas;
+008:008 una tierra de trigo y de cebada, de
 vides, de higueras y de granados;
-tierra de olivos y de miel; 008:009 tierra en la cual no
+tierra de olivos y de miel;
+008:009 tierra en la cual no
 comerás el pan con escasez,
 No te faltará nada en ella; es una tierra cuyas piedras son hierro, y de cuyos montes sacarás cobre.
 008:010 Comerás y te saciarás, y bendecirás a Jehová tu Dios por la buena tierra que te ha dado.
@@ -2229,3 +2238,4 @@ vosotros mismos, que habéis elegido a Jehová, para servirle.
 Dijeron: Somos testigos.
 024:023 Ahora pues, quitad, dijo él, los dioses ajenos que son
 entre vosotros, e inclinad vuestro corazón a Jehová, Dios de Israel.
+025:001

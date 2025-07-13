@@ -43,6 +43,7 @@ module BibleReader
       chapter_start = default.sub('00:', "#{chapter}:")
       chapter_start.dup
       chapter_finish = chapter_start.sub("#{chapter}:", "#{chapter.to_i + 1}:")
+      chapter_finish[0] = '' if chapter_finish == '0100:001'
     elsif chapter.chars.count == 3
       chapter_start = default.sub('000:', "#{chapter}:")
       chapter_start.dup
@@ -54,12 +55,16 @@ module BibleReader
     convert_string_to_array(string_selection_with_new_line)
   end
 
-  def find(word, book_name)
+  def find(book_name, word)
     puts "\nResultados de búsqueda de '#{word}' en el libro de #{book_name}: "
     # word_to_regex = Regexp.new word
-    File.foreach("#{book_name.downcase}_web.txt") do |line|
-      puts line if line.include? word
+    results = ""
+    File.foreach(Rails.root.join('lib', 'bible_text', "#{book_name}_web.txt")) do |line|
+      results << line if line.include? word
     end
+    close_file(open_web_file(book_name)[0])
+    arr = convert_string_to_array(results)
+    transform_web_format_to_bible_verses(arr)
   end
 
   def chapter_range_and_topics(topics_names)
@@ -229,5 +234,11 @@ module BibleReader
 
   def convert_string_to_array(text)
     text.split(/\n/)
+  end
+
+  def transform_web_format_to_bible_verses(verses)
+    verses.each do |verse|
+      verse.sub!(/^0*(\d+):0*(\d+)/, '\1:\2')
+    end
   end
 end
