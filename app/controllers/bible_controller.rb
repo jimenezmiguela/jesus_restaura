@@ -32,6 +32,8 @@ class BibleController < ApplicationController
       redirect_to bible_enter_verse_path
     elsif session[:category] == "find_chapter"
       redirect_to bible_enter_chapter_path
+    elsif session[:category] == 'find_search'
+      redirect_to bible_enter_search_path
     else
       flash[:alert] = "Unsupported action"
       redirect_to bible_select_category_path
@@ -80,4 +82,22 @@ class BibleController < ApplicationController
     render :enter_chapter
   end
 
+  def show_search
+      @search_term = params[:search_term]
+      @book = session[:book] || 'exodo'
+
+      if @search_term.blank?
+        @error = 'Por favor ingrese búsqueda.'
+        return render :enter_search
+      end
+
+      begin
+        @search_results = BibleReader.find(@book, @search_term)
+      rescue StandardError => e
+        Rails.logger.error("Search lookup failed: #{e.message}")
+        @error = 'Búsqueda no encontrada o formato inválido.'
+      end
+
+      render :enter_search
+    end
 end

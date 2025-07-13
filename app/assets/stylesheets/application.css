@@ -45,3 +45,8 @@ body {
 a {
     color: #007bff; /* Bootstrap blue */
 }
+
+.highlight-blue {
+    color: blue;
+    font-weight: bold;
+}
