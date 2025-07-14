@@ -1,12 +1,6 @@
 class BibleController < ApplicationController
 
-  def enter_verse
-    # Renders enter_verse.html.erb by default
-  end
-
-  def enter_chapter
-    # Renders app/views/bible/enter_chapter.html.erb by default
-  end
+  before_action :load_bible_book
 
   def select_book
     @books = BibleReader.book_names
@@ -23,15 +17,16 @@ class BibleController < ApplicationController
   end
 
   def select_category
-    # For now, we only support "find_verse"
   end
 
   def set_category
     session[:category] = params[:category]
-    if session[:category] == "find_verse"
-      redirect_to bible_enter_verse_path
-    elsif session[:category] == "find_chapter"
+    if session[:category] == "find_chapter"
       redirect_to bible_enter_chapter_path
+    elsif session[:category] == "find_verse"
+      redirect_to bible_enter_verse_path
+    elsif session[:category] == 'find_range'
+      redirect_to bible_enter_range_path
     elsif session[:category] == 'find_search'
       redirect_to bible_enter_search_path
     else
@@ -40,32 +35,11 @@ class BibleController < ApplicationController
     end
   end
 
-  def enter_verse
-    # Displays form to input verse reference
-  end
-
-  def show_verse
-    @reference = params[:reference]
-    @book = session[:book] || "exodo"
-
-    if @reference.blank?
-      @error = "Por favor ingrese un versículo."
-      return render :enter_verse
-    end
-
-    begin
-      @verse = BibleReader.find_one_verse(@book, @reference)
-    rescue => e
-      Rails.logger.error("Verse lookup failed: #{e.message}")
-      @error = "Versículo no encontrado o formato inválido."
-    end
-
-    render :enter_verse
+  def enter_chapter
   end
 
   def show_chapter
     @chapter_number = params[:chapter]
-    @book = session[:book] || "exodo"
 
     if @chapter_number.blank?
       @error = "Por favor ingrese un capítulo."
@@ -82,22 +56,73 @@ class BibleController < ApplicationController
     render :enter_chapter
   end
 
-  def show_search
-      @search_term = params[:search_term]
-      @book = session[:book] || 'exodo'
+  def enter_verse
+  end
 
-      if @search_term.blank?
-        @error = 'Por favor ingrese búsqueda.'
-        return render :enter_search
-      end
+  def show_verse
+    @reference = params[:reference]
 
-      begin
-        @search_results = BibleReader.find(@book, @search_term)
-      rescue StandardError => e
-        Rails.logger.error("Search lookup failed: #{e.message}")
-        @error = 'Búsqueda no encontrada o formato inválido.'
-      end
-
-      render :enter_search
+    if @reference.blank?
+      @error = "Por favor ingrese un versículo."
+      return render :enter_verse
     end
+
+    begin
+      @verse = BibleReader.find_one_verse(@book, @reference)
+    rescue => e
+      Rails.logger.error("Verse lookup failed: #{e.message}")
+      @error = "Versículo no encontrado o formato inválido."
+    end
+
+    render :enter_verse
+  end
+
+  def enter_range
+  end
+
+  def show_range
+    @starting_verse = params[:starting_verse]
+    @ending_verse = params[:ending_verse]
+
+    if @starting_verse.blank? || @ending_verse.blank?
+      @error = "Por favor ingrese un versiculo"
+      return render :enter_range
+    end
+
+    begin
+      @range = BibleReader.find_range(@book, @starting_verse, @ending_verse)
+    rescue => e
+      Rails.logger.error("Range lookup failed: #{e.message}")
+      @error = "Selección no encontrada o formato inválido"
+    end
+
+    render :enter_range
+  end
+
+  def enter_search
+  end
+
+  def show_search
+    @search_term = params[:search_term]
+
+    if @search_term.blank?
+      @error = 'Por favor ingrese búsqueda.'
+      return render :enter_search
+    end
+
+    begin
+      @search_results = BibleReader.find(@book, @search_term)
+    rescue StandardError => e
+      Rails.logger.error("Search lookup failed: #{e.message}")
+      @error = 'Búsqueda no encontrada o formato inválido.'
+    end
+
+    render :enter_search
+  end
+
+  private
+
+  def load_bible_book
+    @book = session[:book] || 'exodo'
+  end
 end

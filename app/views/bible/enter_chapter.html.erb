@@ -1,28 +1,41 @@
-<div class="text-center mb-4">
-  <h2 style="color: #ff6b00;"><%= session[:book].to_s.capitalize %></h2>
-  <h4 class="text-muted">Ingresa un Capítulo (ejemplo: 3)</h4>
+<div class="container">
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6 col-sm-10">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+
+                    <h2 class="text-warning fw-bold mb-2">
+                      <%= session[:book].to_s.capitalize.presence || "Libro" %>
+                    </h2>
+
+                    <h5 class="text-muted mb-4"> Ingresa un Capítulo (ejemplo: 3) <span class="text-secondary"></span></h5>
+
+                    <%= form_with url: bible_show_chapter_path, method: :post, local: true do %>
+                      <div class="input-group">
+                        <%= text_field_tag :chapter, nil, class: "form-control", placeholder: "ejemplo: 3", autofocus: true %>
+                      </div>
+                      <%= submit_tag "Encontrar Capítulo", class: "btn btn-warning w-100 text-white fw-bold" %>
+                    <% end %>
+                </div>
+            </div>
+
+            <% if @error.present? %>
+            <div class="alert alert-danger mt-4 text-center" role="alert">
+              <%= @error %>
+            </div>
+
+            <% elsif @chapter.present? %>
+            <div class="card border-warning mt-4">
+                <div class="card-header bg-warning text-white fw-bold">
+                  Resultado de búsqueda: <%= session[:book].to_s.capitalize %> <%= @chapter_number %>
+                </div>
+                <div class="card-body" style="background-color: #fff7e6;">
+                  <% @chapter.each_with_index do |verse, i| %>
+                    <p><strong><%= i + 1 %></strong> <%= verse %></p>
+                  <% end %>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
 </div>
-
-<%= form_with url: bible_show_chapter_path, method: :post, local: true, html: { class: "mb-4" } do %>
-  <div class="input-group">
-    <%= text_field_tag :chapter, nil, class: "form-control", placeholder: "ejemplo: 3", autofocus: true %>
-    <button type="submit" class="btn btn-warning text-white">Encontrar Capítulo</button>
-  </div>
-<% end %>
-
-<% if @error.present? %>
-  <div class="alert alert-danger mt-3" role="alert">
-    <%= @error %>
-  </div>
-<% elsif @chapter.present? %>
-  <div class="card border-warning mt-4">
-    <div class="card-header bg-warning text-white fw-bold">
-      Resultado: <%= session[:book].to_s.capitalize %> Capítulo <%= @chapter_number %>
-    </div>
-    <div class="card-body" style="background-color: #fff7e6;">
-      <% @chapter.each_with_index do |verse, i| %>
-        <p><strong><%= i + 1 %></strong> <%= verse %></p>
-      <% end %>
-    </div>
-  </div>
-<% end %>
