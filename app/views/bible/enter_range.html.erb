@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6 col-sm-10">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h2 class="text-warning fw-bold mb-2">
+                      <%= session[:book].to_s.capitalize.presence || "Libro" %>
+                    </h2>
+
+                    <h5 class="text-muted mb-4">Ingresa Versículos de comenzar y terminar <span class="text-secondary"></span></h5>
+
+                    <%= form_with url: bible_show_range_path, method: :post, local: true do %>
+                    <div class="mb-3">
+                      <%= text_field_tag :starting_verse, nil, class: "form-control", placeholder: "Comenzar ejemplo: 3:16", autofocus: true %>
+
+                      <p></p>
+
+                      <%= text_field_tag :ending_verse, nil, class: "form-control", placeholder: "Terminar ejemplo: 3:19", autofocus: true %>
+                    </div>
+
+                    <%= submit_tag "Encontrar Rango de Versos", class: "btn btn-warning w-100 text-white fw-bold" %>
+                    <% end %>
+                </div>
+            </div>
+
+            <% if @error.present? %>
+            <div class="alert alert-danger mt-4 text-center" role="alert">
+              <%= @error %>
+            </div>
+            <% elsif @range.present? %>
+            <div class="card border-warning mt-4">
+                <div class="card-header bg-warning text-white fw-bold">
+                  Resultado de búsqueda: <%= session[:book].to_s.capitalize %> <%= @starting_verse %> a <%= @ending_verse %>
+                </div>
+                <div class="card-body" style="background-color: #fff7e6;">
+                  <pre class="mb-0" style="white-space: pre-wrap;"><%= @range %></pre>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

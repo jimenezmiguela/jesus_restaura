@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get '/bible/search', to: 'bible#enter_search', as: :bible_enter_search
   post '/bible/search', to: 'bible#show_search', as: :bible_show_search
 
+  get '/bible/range', to: 'bible#enter_range', as: :bible_enter_range
+  post '/bible/range', to: 'bible#show_range', as: :bible_show_range
+
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       get 'verse', to: 'bible#verse'

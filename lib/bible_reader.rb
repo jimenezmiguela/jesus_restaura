@@ -67,31 +67,14 @@ module BibleReader
     transform_web_format_to_bible_verses(arr)
   end
 
-  def chapter_range_and_topics(topics_names)
-    topics_chapter_range = (1..topics_names[topics_chapter_index].count) # get range for user display
-    topics_chapter_topics = topics_names[topics_chapter_index]
-    [topics_chapter_range, topics_chapter_topics]
-  end
-
-  def display_one_chapter_menu(topics_chapter_str)
-    topics_chapter_str.to_i # change to use for index
-    topics_chapter_range = chapter_range_and_topics(topics_names[0]) # get range for user display
-    topics_chapter_topics = chapter_range_and_topics(topics_names[1]) # get specific topics for user display
-    puts "\nChapter #{topics_chapter_str} topics menu:"
-    topics_chapter_range.zip(topics_chapter_topics).each do |(topics_chapter_range, topics_chapter_topics)|
-      puts "#{topics_chapter_range}. #{topics_chapter_topics}"
-    end
-  end
-
   def find_range(book, start_request, finish_request)
     start = transform_bible_verses_to_web_format(start_request)
     finish = transform_bible_verses_to_web_format(finish_request)
     bible_book = open_web_file(book)[1]
-    puts "\n#{book.capitalize} #{start_request} - #{finish_request}: "
     # range = find_bible_selection(bible_book, start, finish)
     range = find_selection_and_remove_verses(bible_book, start, finish)
-    puts wrap(range, 75)
     close_file(open_web_file(book)[0])
+    range
   end
 
   def find_one_verse(book, start_request)
@@ -152,16 +135,6 @@ module BibleReader
     next_verse
   end
 
-  def find_bible_selection(bible_book, start, finish)
-    # change file to array
-    bible_book_arr = bible_book.split
-    # find indexes of verse positions
-    before = bible_book_arr.find_index(start)
-    after = bible_book_arr.find_index(finish)
-    # convert selection from array to string for user
-    bible_book_arr[(before)..(after - 1)].join(' ')
-  end
-
   def close_file(file)
     file.close
   end
@@ -200,6 +173,16 @@ module BibleReader
       end
     end
     output
+  end
+
+  def find_bible_selection(bible_book, start, finish)
+    # change file to array
+    bible_book_arr = bible_book.split
+    # find indexes of verse positions
+    before = bible_book_arr.find_index(start)
+    after = bible_book_arr.find_index(finish)
+    # convert selection from array to string for user
+    bible_book_arr[(before)..(after - 1)].join(' ')
   end
 
   def transform_bible_verses_to_web_format(verse_request)
