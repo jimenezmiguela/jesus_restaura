@@ -5,6 +5,7 @@ require_relative 'bible_reader/numeros'
 require_relative 'bible_reader/deuteronomio'
 require_relative 'bible_reader/mateo'
 require_relative 'bible_reader/salmos'
+require_relative 'bible_reader/jeremias'
 
 module BibleReader
   extend self
@@ -16,6 +17,7 @@ module BibleReader
       'numeros' => Numeros.new,
       'deuteronomio' => Deuteronomio.new,
       'salmos' => Salmos.new,
+      'jeremias' => Jeremias.new,
       'mateo' => Mateo.new }
   end
 
@@ -27,6 +29,7 @@ module BibleReader
       numeros
       deuteronomio
       salmos
+      jeremias
       mateo
     ]
   end
