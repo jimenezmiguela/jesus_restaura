@@ -21,7 +21,10 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      get 'chapter', to: 'bible#chapter'
       get 'verse', to: 'bible#verse'
+      get 'range', to: 'bible#range'
+      get 'search', to: 'bible#search'
     end
   end
 
