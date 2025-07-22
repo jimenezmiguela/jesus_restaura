@@ -1,10 +1,13 @@
 # syntax = docker/dockerfile:1
 
+# Match Ruby version with .ruby-version and Gemfile
 ARG RUBY_VERSION=2.7.6
 FROM ruby:$RUBY_VERSION-slim as base
 
+# Set working directory
 WORKDIR /rails
 
+# Production environment variables
 ENV RAILS_ENV=production \
     BUNDLE_DEPLOYMENT=1 \
     BUNDLE_PATH=/usr/local/bundle \
@@ -13,6 +16,7 @@ ENV RAILS_ENV=production \
 # --- Build Stage ---
 FROM base as build
 
+# Install packages needed to build gems, including PostgreSQL support and JS dependencies
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
     build-essential \
@@ -30,27 +34,36 @@ RUN bundle install && \
 
 COPY . .
 
+# Precompile bootsnap files for faster boot time
 RUN bundle exec bootsnap precompile app/ lib/
 
+# Precompile Rails assets without needing real secret
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
-# --- Final Stage ---
+# --- Final Runtime Stage ---
 FROM base
 
-# 🛠️ Add runtime dependency: libpq5 (for pg gem)
+# Install only runtime dependencies (including libpq5 for pg gem)
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
     libpq5 \
     curl && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
+# Copy compiled app and gems from build stage
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
+# Create non-root user for security and fix permissions
 RUN useradd rails --create-home --shell /bin/bash && \
-    chown -R rails:rails log tmp
+    chown -R rails:rails log tmp db
+
+# Switch to non-root user
 USER rails:rails
 
+# Entrypoint handles database setup
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+
+# Default command: start Rails server
 EXPOSE 3000
 CMD ["./bin/rails", "server"]
