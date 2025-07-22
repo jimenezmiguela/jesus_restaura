@@ -56,7 +56,9 @@ COPY --from=build /rails /rails
 
 # Create non-root user for security and fix permissions on log and tmp
 RUN useradd rails --create-home --shell /bin/bash && \
-    chown -R rails:rails log tmp
+    chown -R rails:rails log tmp db
+
+# Switch to non-root user
 USER rails:rails
 
 # Entrypoint handles database setup
