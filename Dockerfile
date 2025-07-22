@@ -27,7 +27,7 @@ RUN apt-get update -qq && \
     yarn \
     curl
 
-# Install gems
+# Copy Gemfile and install gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
@@ -35,6 +35,9 @@ RUN bundle install && \
 
 # Copy app code
 COPY . .
+
+# Ensure bin/rails is executable
+RUN chmod +x bin/rails
 
 # Precompile bootsnap files and assets
 RUN bundle exec bootsnap precompile app/ lib/ && \
@@ -52,19 +55,19 @@ RUN apt-get update -qq && \
     curl && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
-# Copy built app and gems
+# Copy built gems and app code
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
-# Create non-root user and fix permissions
+# Fix permissions: set rails user and chown entire app folder plus bundle path
 RUN useradd rails --create-home --shell /bin/bash && \
-    chown -R rails:rails log tmp db
+    chown -R rails:rails /rails /usr/local/bundle
 
 # Switch to non-root user
 USER rails:rails
 
 # Entrypoint and default command
-ENTRYPOINT ["./bin/rails"]
+ENTRYPOINT ["bundle", "exec", "rails"]
 CMD ["server"]
 
 # Expose port 3000 for web
