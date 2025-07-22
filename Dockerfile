@@ -1,25 +1,28 @@
 # syntax = docker/dockerfile:1
 
-# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
+# Match Ruby version with .ruby-version and Gemfile
 ARG RUBY_VERSION=2.7.6
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
-# Rails app lives here
+# Set working directory
 WORKDIR /rails
 
-# Set production environment
+# Production environment variables
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development"
 
-
-# Throw-away build stage to reduce size of final image
+# --- Build Stage ---
 FROM base as build
 
-# Install packages needed to build gems
+# Install packages needed to build gems, including PostgreSQL support
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git pkg-config
+    apt-get install --no-install-recommends -y \
+    build-essential \
+    git \
+    pkg-config \
+    libpq-dev
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -30,33 +33,33 @@ RUN bundle install && \
 # Copy application code
 COPY . .
 
-# Precompile bootsnap code for faster boot times
+# Precompile bootsnap files for faster boot time
 RUN bundle exec bootsnap precompile app/ lib/
 
-# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
+# Precompile Rails assets without needing real secret
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 
-# Final stage for app image
+# --- Final Runtime Stage ---
 FROM base
 
-# Install packages needed for deployment
+# Install only runtime dependencies
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-# Copy built artifacts: gems, application
+# Copy compiled app and gems from build stage
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
-# Run and own only the runtime files as a non-root user for security
+# Create non-root user for security
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails log tmp
 USER rails:rails
 
-# Entrypoint prepares the database.
+# Entrypoint handles database setup
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
-# Start the server by default, this can be overwritten at runtime
+# Default command: start Rails server
 EXPOSE 3000
 CMD ["./bin/rails", "server"]
