@@ -54,7 +54,7 @@ RUN apt-get update -qq && \
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
-# Create non-root user for security and fix permissions
+# Create non-root user for security and fix permissions on log and tmp
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails log tmp db
 
