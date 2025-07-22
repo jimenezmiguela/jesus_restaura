@@ -16,7 +16,7 @@ ENV RAILS_ENV=production \
 # --- Build Stage ---
 FROM base as build
 
-# Install packages needed to build gems, including PostgreSQL support and JS dependencies
+# Install packages needed to build gems and JS dependencies
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
     build-essential \
@@ -27,43 +27,45 @@ RUN apt-get update -qq && \
     yarn \
     curl
 
+# Install gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
 
+# Copy app code
 COPY . .
 
-# Precompile bootsnap files for faster boot time
-RUN bundle exec bootsnap precompile app/ lib/
-
-# Precompile Rails assets without needing real secret
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+# Precompile bootsnap files and assets
+RUN bundle exec bootsnap precompile app/ lib/ && \
+    SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile && \
+    rm -rf tmp/cache vendor/assets
 
 # --- Final Runtime Stage ---
 FROM base
 
-# Install only runtime dependencies (including libpq5 for pg gem)
+# Install only runtime dependencies including PostgreSQL client
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
     libpq5 \
+    postgresql-client \
     curl && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
-# Copy compiled app and gems from build stage
+# Copy built app and gems
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
-# Create non-root user for security and fix permissions on log and tmp
+# Create non-root user and fix permissions
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails log tmp db
 
 # Switch to non-root user
 USER rails:rails
 
-# Entrypoint handles database setup
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+# Entrypoint and default command
+ENTRYPOINT ["./bin/rails"]
+CMD ["server"]
 
-# Default command: start Rails server
+# Expose port 3000 for web
 EXPOSE 3000
-CMD ["./bin/rails", "server"]
