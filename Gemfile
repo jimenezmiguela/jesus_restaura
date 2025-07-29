@@ -8,6 +8,12 @@ gem 'rails', '~> 7.1.5', '>= 7.1.5.1'
 # Add pg gem and activerecord
 gem 'pg', '~> 1.4'
 
+# Devise
+gem 'devise'
+
+# Use Importmap features (like javascript_include_tag ... type: "module" and ES module imports)
+gem "importmap-rails"
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
@@ -40,6 +46,9 @@ gem 'tzinfo-data', platforms: %i[mswin mswin64 mingw x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
+
+# DB credentials load automatically in development — securely and cleanly
+gem "dotenv-rails", groups: [:development, :test]
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

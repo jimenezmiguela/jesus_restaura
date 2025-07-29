@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :admins, skip: [:registrations]
+  devise_for :users
+  get "/admins/sign_up", to: redirect("/admins/sign_in")
+
   root "bible#select_book"
 
   get  "/bible/book",      to: "bible#select_book",     as: :bible_select_book
