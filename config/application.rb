@@ -20,6 +20,12 @@ Bundler.require(*Rails.groups)
 
 module JesusRestaura
   class Application < Rails::Application
+    # Set Spanish as the default locale
+    config.i18n.default_locale = :es
+
+    # Optionally add fallback to English if something is missing in Spanish
+    config.i18n.fallbacks = [:en]
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 

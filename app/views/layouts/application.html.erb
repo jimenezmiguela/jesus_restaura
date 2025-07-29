@@ -15,15 +15,32 @@
 
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_include_tag "application", type: "module", defer: true %>
+    <%= javascript_importmap_tags %>
 </head>
 
 <body>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show" role="alert">
+      <%= value %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+
   <!-- Header -->
   <nav class="navbar navbar-dark" style="background-color: #ff6b00;">
-    <div class="container">
+    <div class="container d-flex justify-content-between align-items-center">
       <a class="navbar-brand fw-bold" href="/">📖 JesusRestaura.com</a>
+
+      <% if user_signed_in? %>
+        <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "btn btn-outline-light btn-sm" %>
+      <% elsif admin_signed_in? %>
+        <%= button_to "Cerrar sesión (admin)", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light btn-sm" %>
+      <% else %>
+        <%= link_to "Iniciar sesión", new_user_session_path, class: "btn btn-light btn-sm" %>
+      <% end %>
     </div>
   </nav>
+
 
   <!-- Main Content -->
   <main class="container py-5">
