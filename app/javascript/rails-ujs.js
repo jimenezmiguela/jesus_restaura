@@ -1,0 +1,1 @@
+Not found: /@rails/ujs@7.1.3/lib/assets/compiled/rails-ujs.js
