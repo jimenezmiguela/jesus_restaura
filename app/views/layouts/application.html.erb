@@ -15,7 +15,7 @@
 
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_include_tag "application", type: "module", defer: true %>
-    <%= javascript_importmap_tags %>
+  <%= javascript_importmap_tags %>
 </head>
 
 <body>
@@ -31,16 +31,23 @@
     <div class="container d-flex justify-content-between align-items-center">
       <a class="navbar-brand fw-bold" href="/">📖 JesusRestaura.com</a>
 
-      <% if user_signed_in? %>
-        <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "btn btn-outline-light btn-sm" %>
-      <% elsif admin_signed_in? %>
-        <%= button_to "Cerrar sesión (admin)", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light btn-sm" %>
-      <% else %>
-        <%= link_to "Iniciar sesión", new_user_session_path, class: "btn btn-light btn-sm" %>
-      <% end %>
+      <div>
+        <% if user_signed_in? %>
+          <span class="text-white me-2">Hola, <%= current_user.email %></span>
+          <%= link_to "Editar cuenta", edit_user_registration_path, class: "btn btn-outline-light btn-sm me-2" %>
+          <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "btn btn-outline-light btn-sm" %>
+
+        <% elsif admin_signed_in? %>
+          <span class="text-white me-2">Admin: <%= current_admin.email %></span>
+          <%= button_to "Cerrar sesión (admin)", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light btn-sm" %>
+
+        <% else %>
+          <%= link_to "Iniciar sesión", new_user_session_path, class: "btn btn-light btn-sm me-2" %>
+          <%= link_to "Registrarse", new_user_registration_path, class: "btn btn-outline-light btn-sm" %>
+        <% end %>
+      </div>
     </div>
   </nav>
-
 
   <!-- Main Content -->
   <main class="container py-5">
