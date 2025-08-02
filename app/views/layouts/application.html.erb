@@ -42,7 +42,7 @@
           <%= button_to "Cerrar sesión (admin)", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light btn-sm" %>
 
         <% else %>
-          <%= link_to "Iniciar sesión", new_user_session_path, class: "btn btn-light btn-sm me-2" %>
+          <%= link_to "Iniciar sesión", new_user_session_path, class: "btn btn-outline-light btn-sm" %>
           <%= link_to "Registrarse", new_user_registration_path, class: "btn btn-outline-light btn-sm" %>
         <% end %>
       </div>
