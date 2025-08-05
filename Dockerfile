@@ -29,6 +29,10 @@ RUN bundle install && \
 
 COPY . .
 
+# Pass RAILS_MASTER_KEY to the build environment for asset precompilation
+ARG RAILS_MASTER_KEY
+ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+
 RUN bundle exec bootsnap precompile app/ lib/
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
