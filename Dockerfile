@@ -13,7 +13,7 @@ ENV RAILS_ENV=production \
 # -------- BUILD STAGE --------
 FROM base AS build
 
-# Accept RAILS_MASTER_KEY as build argument
+# 🔑 Accept RAILS_MASTER_KEY as build argument
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 
