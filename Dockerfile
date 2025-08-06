@@ -10,7 +10,12 @@ ENV RAILS_ENV=production \
     BUNDLE_PATH=/usr/local/bundle \
     BUNDLE_WITHOUT=development:test
 
+# -------- BUILD STAGE --------
 FROM base AS build
+
+# Accept RAILS_MASTER_KEY as build argument
+ARG RAILS_MASTER_KEY
+ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
@@ -31,13 +36,11 @@ RUN bundle install && \
 # Copy application source code
 COPY . .
 
-# ✅ TEMPORARY: Copy master.key from project root to config for credentials decryption
-COPY master.key config/master.key
-
-# Precompile assets
+# Precompile app code (requires RAILS_MASTER_KEY to be set in Dokku)
 RUN bundle exec bootsnap precompile app/ lib/
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+RUN ./bin/rails assets:precompile
 
+# -------- FINAL STAGE --------
 FROM base
 
 RUN apt-get update -qq && \
@@ -47,7 +50,7 @@ RUN apt-get update -qq && \
     curl && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
-# Copy the application from the build stage
+# Copy everything from build
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
