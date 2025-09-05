@@ -54,6 +54,14 @@
     <%= yield %>
   </main>
 
+  <% if user_signed_in? %>
+    <%= link_to "Mis Versículos", saved_verses_path, class: "btn btn-outline-light btn-sm me-2" %>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= link_to "Mis Secciones", saved_sections_path, class: "btn btn-outline-light btn-sm me-2" %>
+  <% end %>
+
   <!-- Footer -->
   <footer class="text-center text-muted my-5">
     <small>&copy; <%= Time.current.year %> JesusRestaura.com</small>
