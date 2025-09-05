@@ -1,0 +1,33 @@
+<h1 class="mb-4">Versículos Guardados</h1>
+
+<%= link_to "➕ Nuevo Versículo", new_saved_verse_path, class: "btn btn-primary mb-3" %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Libro</th>
+      <th>Capítulo</th>
+      <th>Versículo</th>
+      <th>Nota</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @saved_verses.each do |verse| %>
+      <tr>
+        <td><%= verse.book.titleize %></td>
+        <td><%= verse.chapter %></td>
+        <td><%= verse.verse %></td>
+        <td><%= truncate(verse.note, length: 50) %></td>
+        <td>
+          <%= link_to "Editar", edit_saved_verse_path(verse), class: "btn btn-sm btn-outline-secondary" %>
+          <%= link_to "Ver", saved_verse_path(verse), class: "btn btn-sm btn-outline-info" %>
+          <%= button_to "Eliminar", saved_verse_path(verse),
+              method: :delete,
+              data: { confirm: "¿Estás seguro?" },
+              class: "btn btn-sm btn-outline-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

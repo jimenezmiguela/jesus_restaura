@@ -1,0 +1,13 @@
+<h1>Versículo Guardado</h1>
+
+<ul class="list-group mb-4">
+  <li class="list-group-item"><strong>Libro:</strong> <%= @saved_verse.book.titleize %></li>
+  <li class="list-group-item"><strong>Capítulo:</strong> <%= @saved_verse.chapter %></li>
+  <li class="list-group-item"><strong>Versículo:</strong> <%= @saved_verse.verse %></li>
+  <li class="list-group-item"><strong>Nota:</strong> <%= simple_format(@saved_verse.note.presence || "Sin nota") %></li>
+</ul>
+
+<div class="d-flex">
+  <%= link_to "✏️ Editar", edit_saved_verse_path(@saved_verse), class: "btn btn-outline-primary me-2" %>
+  <%= link_to "← Volver", saved_verses_path, class: "btn btn-secondary" %>
+</div>

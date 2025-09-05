@@ -1,0 +1,31 @@
+<h1 class="mb-4">Secciones Guardadas</h1>
+
+<%= link_to "➕ Nueva Sección", new_saved_section_path, class: "btn btn-primary mb-3" %>
+
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Descripción</th>
+      <th>Nota</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @saved_sections.each do |section| %>
+      <tr>
+        <td><%= section.title %></td>
+        <td><%= truncate(section.description, length: 50) %></td>
+        <td><%= truncate(section.note, length: 50) %></td>
+        <td>
+          <%= link_to "Ver", saved_section_path(section), class: "btn btn-sm btn-outline-info me-1" %>
+          <%= link_to "Editar", edit_saved_section_path(section), class: "btn btn-sm btn-outline-secondary me-1" %>
+          <%= button_to "Eliminar", saved_section_path(section),
+                        method: :delete,
+                        data: { confirm: "¿Eliminar esta sección?" },
+                        class: "btn btn-sm btn-outline-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
