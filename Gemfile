@@ -11,6 +11,9 @@ gem 'pg', '~> 1.4'
 # Devise
 gem 'devise', '~> 4.9.4'
 
+# Invisible CAPTCHA
+gem 'invisible_captcha', '~> 2.3.0'
+
 # Use Importmap features (like javascript_include_tag ... type: "module" and ES module imports)
 gem 'importmap-rails'
 
