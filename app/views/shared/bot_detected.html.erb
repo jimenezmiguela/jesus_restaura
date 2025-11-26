@@ -1,0 +1,6 @@
+<div class="container py-5">
+  <h1 class="text-danger">Bot detected!</h1>
+  <p>If you are not a bot, please go back and try again.</p>
+
+  <%= link_to "Back", request.referrer || root_path, class: "btn btn-primary" %>
+</div>
