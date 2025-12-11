@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_09_05_190714) do
+ActiveRecord::Schema[7.1].define(version: 2025_12_11_161524) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,32 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_05_190714) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_saved_verses_on_user_id"
+  end
+
+  create_table "spam_attempts", force: :cascade do |t|
+    t.string "ip_address"
+    t.text "user_agent"
+    t.string "email"
+    t.string "endpoint"
+    t.jsonb "params"
+    t.string "blocked_by"
+    t.datetime "occurred_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "spam_user_archives", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "email"
+    t.string "username"
+    t.string "ip_address"
+    t.text "user_agent"
+    t.jsonb "saved_sections"
+    t.jsonb "saved_verses"
+    t.jsonb "metadata"
+    t.datetime "archived_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
