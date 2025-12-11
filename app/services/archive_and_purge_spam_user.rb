@@ -1,4 +1,3 @@
-# app/services/archive_and_purge_spam_user.rb
 class ArchiveAndPurgeSpamUser
   def initialize(user)
     @user = user
