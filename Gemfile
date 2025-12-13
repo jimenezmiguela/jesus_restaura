@@ -14,6 +14,9 @@ gem 'devise', '~> 4.9.4'
 # Invisible CAPTCHA
 gem 'invisible_captcha', '~> 2.3.0'
 
+# Acts as Rack middleware, sitting in front of your app to filter requests before they hit core logic, using a cache (like Redis) for state management
+gem 'rack-attack'
+
 # Use Importmap features (like javascript_include_tag ... type: "module" and ES module imports)
 gem 'importmap-rails'
 
