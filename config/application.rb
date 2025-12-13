@@ -20,6 +20,9 @@ Bundler.require(*Rails.groups)
 
 module JesusRestaura
   class Application < Rails::Application
+    # Enable middleware
+    config.middleware.use Rack::Attack
+
     # Set Spanish as the default locale
     config.i18n.default_locale = :es
 
