@@ -1,0 +1,11 @@
+@use "../design/tokens";
+@use "sass:math";
+
+.card {
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    border-radius: tokens.$radius;
+    padding: math.div(tokens.$spacing, 2);
+    margin-bottom: math.div(tokens.$spacing, 2);
+    font-size: tokens.$font-size-base;
+}

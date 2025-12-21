@@ -1,0 +1,11 @@
+@use "../design/tokens";
+
+.navbar,
+.footer {
+    background-color: var(--brand-primary);
+    color: var(--brand-primary-text);
+
+    a {
+        color: var(--brand-primary-text);
+    }
+}

@@ -1,0 +1,13 @@
+@use "../design/tokens";
+@use "sass:math";
+
+.alert {
+    padding: math.div(tokens.$spacing, 2);
+    border-radius: tokens.$radius;
+    margin-bottom: math.div(tokens.$spacing, 2);
+}
+
+.alert-danger {
+    background-color: var(--alert-bg);
+    color: var(--alert-text);
+}
