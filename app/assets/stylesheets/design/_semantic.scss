@@ -1,0 +1,36 @@
+@use "primitives" as *;
+
+/* ============================================
+   Semantic Tokens (INTENT-BASED)
+   SAFE FOR COMPONENTS
+   ============================================ */
+
+/* Base */
+$color-body-background: $tan-50;
+$color-text: $gray-900;
+$color-link: $blue-500;
+$color-highlight-blue: $blue-500;
+
+/* Navigation */
+$color-navbar-footer-bg: $orange-500;
+$color-navbar-footer-text: $white;
+
+/* Buttons – centralized yellow warning style */
+$color-btn-primary-bg: #ffc107; // yellow
+$color-btn-primary-hover-bg: darken(#ffc107, 10%);
+$color-btn-primary-text: #ffffff; // white text for all buttons
+
+/* Cards */
+$color-card-bg: $white;
+$color-card-text: $gray-900;
+
+/* Alerts */
+$color-alert-bg: $pink-100;
+$color-alert-text: $red-800;
+
+/* Tables */
+$color-table-row-alt: $table-row-alt;
+$color-table-border: $table-border;
+
+/* Forms */
+$color-form-border: $gray-300;

@@ -1,0 +1,61 @@
+// ============================================
+// Application Stylesheet (ENTRY POINT)
+// Rails 7 + Dart Sass
+// ============================================
+
+// Design system
+@use "design/tokens";
+@use "design/themes";
+
+// Base styles
+@use "base/typography";
+@use "base/layout";
+
+// Components
+@use "components/buttons";
+@use "components/forms";
+@use "components/cards";
+@use "components/tables";
+@use "components/alerts";
+@use "components/navigation";
+
+// Global styles
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-base);
+}
+
+a {
+    color: var(--color-link);
+}
+
+.highlight-blue {
+    color: var(--color-highlight-blue);
+    font-weight: 600;
+}
+
+// Bootstrap Overrides (MUST come after Bootstrap)
+.btn-primary {
+    background-color: var(--btn-primary-bg) !important;
+    border-color: var(--btn-primary-bg) !important;
+    color: var(--btn-primary-text) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--btn-primary-hover-bg) !important;
+    border-color: var(--btn-primary-hover-bg) !important;
+}
+
+// Navbar & footer
+.navbar,
+.footer {
+    background-color: var(--brand-primary);
+    color: var(--brand-primary-text);
+}
+
+.navbar a,
+.footer a {
+    color: var(--brand-primary-text);
+}
