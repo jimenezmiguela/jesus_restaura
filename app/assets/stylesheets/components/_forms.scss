@@ -1,0 +1,14 @@
+@use "../design/tokens";
+@use "sass:math";
+
+input,
+textarea,
+select {
+    padding: math.div(tokens.$spacing, 2);
+    font-size: tokens.$font-size-base;
+    border-radius: tokens.$radius;
+    border: 1px solid var(--form-border);
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+}

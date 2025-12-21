@@ -1,0 +1,18 @@
+@use "../design/tokens";
+@use "sass:math";
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: math.div(tokens.$spacing, 2);
+}
+
+.table th,
+.table td {
+    padding: math.div(tokens.$spacing, 2);
+    border: 1px solid var(--table-border);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--table-row-alt);
+}

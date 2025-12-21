@@ -1,0 +1,56 @@
+@use "tokens";
+
+/* ============================================
+   Light Theme (DEFAULT)
+   ============================================ */
+
+:root {
+    --color-bg: #{tokens.$color-body-background};
+    --color-text: #{tokens.$color-text};
+    --color-link: #{tokens.$color-link};
+    --color-highlight-blue: #{tokens.$color-highlight-blue};
+
+    --brand-primary: #{tokens.$color-navbar-footer-bg};
+    --brand-primary-text: #{tokens.$color-navbar-footer-text};
+
+    --btn-primary-bg: #{tokens.$color-btn-primary-bg};
+    --btn-primary-hover-bg: #{tokens.$color-btn-primary-hover-bg};
+    --btn-primary-text: #{tokens.$color-btn-primary-text};
+
+    --card-bg: #{tokens.$color-card-bg};
+    --card-text: #{tokens.$color-card-text};
+
+    --alert-bg: #{tokens.$color-alert-bg};
+    --alert-text: #{tokens.$color-alert-text};
+
+    --table-row-alt: #{tokens.$color-table-row-alt};
+    --table-border: #{tokens.$color-table-border};
+
+    --form-border: #{tokens.$color-form-border};
+}
+
+/* Dark Theme (optional, future-proof) */
+body.dark-mode {
+    --color-bg: #1e1e1e;
+    --color-text: #f0f0f0;
+    --color-link: #66b3ff;
+    --color-highlight-blue: #66b3ff;
+
+    --brand-primary: #{tokens.$color-navbar-footer-bg};
+    --brand-primary-text: #ffffff;
+
+    --btn-primary-bg: #{tokens.$color-btn-primary-bg};
+    --btn-primary-hover-bg: #{tokens.$color-btn-primary-hover-bg};
+    --btn-primary-text: #{tokens.$color-btn-primary-text};
+
+    --card-bg: #2a2a2a;
+    --card-text: #f0f0f0;
+
+    --alert-bg: #4a1f25;
+    --alert-text: #f8d7da;
+
+    --table-row-alt: #2a2a2a;
+    --table-border: #444;
+
+    --form-border: #555;
+}

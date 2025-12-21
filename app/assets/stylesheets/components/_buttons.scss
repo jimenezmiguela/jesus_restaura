@@ -1,0 +1,16 @@
+@use "../design/tokens";
+@use "sass:math";
+
+.btn-primary {
+    background-color: var(--btn-primary-bg) !important;
+    color: var(--btn-primary-text) !important;
+    border-radius: tokens.$radius;
+    border: 1px solid var(--btn-primary-bg);
+    padding: math.div(tokens.$spacing, 2) tokens.$spacing;
+
+    &:hover,
+    &:focus {
+        background-color: var(--btn-primary-hover-bg) !important;
+        border-color: var(--btn-primary-hover-bg) !important;
+    }
+}

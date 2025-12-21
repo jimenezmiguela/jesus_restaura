@@ -11,6 +11,9 @@ gem 'pg', '~> 1.4'
 # Devise
 gem 'devise', '~> 4.9.4'
 
+# Integrates the standalone Dart Sass compiler with the Ruby on Rails asset pipeline
+gem 'dartsass-rails'
+
 # Invisible CAPTCHA
 gem 'invisible_captcha', '~> 2.3.0'
 
