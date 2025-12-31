@@ -1,9 +1,8 @@
 @use "tokens";
 
-/* ============================================
-   Light Theme (DEFAULT)
-   ============================================ */
-
+// =========================
+// Light (default)
+// =========================
 :root {
     --color-bg: #{tokens.$color-body-background};
     --color-text: #{tokens.$color-text};
@@ -29,19 +28,17 @@
     --form-border: #{tokens.$color-form-border};
 }
 
-/* Dark Theme (optional, future-proof) */
-body.dark-mode {
+// =========================
+// Dark
+// =========================
+html[data-theme="dark"] {
     --color-bg: #1e1e1e;
     --color-text: #f0f0f0;
     --color-link: #66b3ff;
     --color-highlight-blue: #66b3ff;
 
-    --brand-primary: #{tokens.$color-navbar-footer-bg};
+    --brand-primary: #2a2a2a;
     --brand-primary-text: #ffffff;
-
-    --btn-primary-bg: #{tokens.$color-btn-primary-bg};
-    --btn-primary-hover-bg: #{tokens.$color-btn-primary-hover-bg};
-    --btn-primary-text: #{tokens.$color-btn-primary-text};
 
     --card-bg: #2a2a2a;
     --card-text: #f0f0f0;
