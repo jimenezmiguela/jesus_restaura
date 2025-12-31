@@ -1,11 +1,13 @@
-@use "../design/tokens";
+.theme-toggle {
+    cursor: pointer;
+    user-select: none;
 
-.navbar,
-.footer {
-    background-color: var(--brand-primary);
-    color: var(--brand-primary-text);
+    input {
+        display: none;
+    }
 
-    a {
-        color: var(--brand-primary-text);
+    span {
+        font-size: 1.2rem;
+        line-height: 1;
     }
 }
