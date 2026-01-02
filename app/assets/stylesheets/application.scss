@@ -3,7 +3,7 @@
 // Rails 7 + Dart Sass
 // ============================================
 
-// Design system (MUST be first)
+// Design system (first)
 @use "design/tokens";
 @use "design/themes";
 
@@ -68,41 +68,23 @@ a {
 }
 
 // ============================================
-// Dark Mode (CURRENT PAGE ONLY)
+// Dark Mode (checkbox-driven toggle)
 // ============================================
 
-html:has(#theme-toggle:checked) body {
-    background-color: #1e1e1e;
-    color: #f0f0f0;
-}
+html:has(#theme-toggle:checked) {
+    --color-bg: #1e1e1e;
+    --color-text: #f0f0f0;
 
-html:has(#theme-toggle:checked) .card {
-    background-color: #2a2a2a;
-    color: #f0f0f0;
-}
+    --card-bg: #2a2a2a;
+    --card-text: #f0f0f0;
 
-html:has(#theme-toggle:checked) .card-header {
-    background-color: var(--brand-primary);
-    color: #ffffff;
-}
+    --alert-bg: #4a1f25;
+    --alert-text: #f8d7da;
 
-html:has(#theme-toggle:checked) .alert {
-    background-color: #4a1f25;
-    color: #f8d7da;
-}
+    --table-row-alt: #2a2a2a;
+    --table-border: #444;
 
-html:has(#theme-toggle:checked) .table {
-    border-color: #444;
-}
-
-html:has(#theme-toggle:checked) .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #2a2a2a;
-}
-
-html:has(#theme-toggle:checked) .form-control {
-    background-color: #1e1e1e;
-    color: #f0f0f0;
-    border-color: #555;
+    --form-border: #555;
 }
 
 // ============================================
@@ -122,7 +104,7 @@ html:has(#theme-toggle:checked) .form-control {
 }
 
 // ============================================
-// Navbar & Footer
+// Navbar
 // ============================================
 
 .navbar {
@@ -136,7 +118,8 @@ html:has(#theme-toggle:checked) .form-control {
 
 // ============================================
 // Theme Toggle Styling
-// label vfr rf x  v
+// ============================================
+
 .theme-toggle {
     cursor: pointer;
     user-select: none;

@@ -1,10 +1,18 @@
 <h1>Versículo Guardado</h1>
 
-<ul class="list-group mb-4">
-  <li class="list-group-item"><strong>Libro:</strong> <%= @saved_verse.book.titleize %></li>
-  <li class="list-group-item"><strong>Capítulo:</strong> <%= @saved_verse.chapter %></li>
-  <li class="list-group-item"><strong>Versículo:</strong> <%= @saved_verse.verse %></li>
-  <li class="list-group-item"><strong>Nota:</strong> <%= simple_format(@saved_verse.note.presence || "Sin nota") %></li>
+<ul class="list-group mb-4 bg-card" style="color: var(--card-text); border-color: var(--table-border);">
+  <li class="list-group-item" style="background-color: var(--card-bg); color: var(--card-text);">
+    <strong>Libro:</strong> <%= @saved_verse.book.titleize %>
+  </li>
+  <li class="list-group-item" style="background-color: var(--card-bg); color: var(--card-text);">
+    <strong>Capítulo:</strong> <%= @saved_verse.chapter %>
+  </li>
+  <li class="list-group-item" style="background-color: var(--card-bg); color: var(--card-text);">
+    <strong>Versículo:</strong> <%= @saved_verse.verse %>
+  </li>
+  <li class="list-group-item" style="background-color: var(--card-bg); color: var(--card-text);">
+    <strong>Nota:</strong> <%= simple_format(@saved_verse.note.presence || "Sin nota") %>
+  </li>
 </ul>
 
 <div class="d-flex">

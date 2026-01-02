@@ -1,18 +1,31 @@
 @use "../design/tokens";
 @use "sass:math";
 
+// ============================================
+// Tables (dark mode ready inside .bg-card)
+// ============================================
+
 .table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: math.div(tokens.$spacing, 2);
 }
 
-.table th,
-.table td {
-    padding: math.div(tokens.$spacing, 2);
-    border: 1px solid var(--table-border);
+// Tables inside .bg-card inherit dark-mode colors
+.bg-card .table,
+.bg-card .table th,
+.bg-card .table td {
+    background-color: var(--card-bg) !important;
+    color: var(--card-text) !important;
+    border: 1px solid var(--table-border) !important;
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: var(--table-row-alt);
+// Striped rows inside .bg-card
+.bg-card .table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--table-row-alt) !important;
+}
+
+// Hover state inside .bg-card
+.bg-card .table-hover tbody tr:hover {
+    background-color: var(--table-row-hover, var(--table-row-alt)) !important;
 }
