@@ -1,6 +1,10 @@
 @use "../design/tokens";
 @use "sass:math";
 
+// ============================================
+// Card component
+// ============================================
+
 .card {
     background-color: var(--card-bg);
     color: var(--card-text);
@@ -8,4 +12,30 @@
     padding: math.div(tokens.$spacing, 2);
     margin-bottom: math.div(tokens.$spacing, 2);
     font-size: tokens.$font-size-base;
+}
+
+// ============================================
+// Generic background card utility
+// Used for CRUD tables, read views, boxes
+// ============================================
+
+.bg-card {
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    border-radius: tokens.$radius;
+    padding: 1rem; // consistent spacing
+    border: 1px solid var(--table-border);
+}
+
+// ============================================
+// Read-only content box (optional, future use)
+// ============================================
+
+.read-box {
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    border-radius: tokens.$radius;
+    padding: 1rem;
+    border: 1px solid var(--table-border);
+    word-break: break-word;
 }
