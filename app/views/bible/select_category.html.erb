@@ -7,10 +7,10 @@
           <h2 class="text-warning fw-bold mb-2">
             <%= session[:book].to_s.capitalize.presence || "Libro" %>
           </h2>
-
           <h5 class="mb-4">Búsqueda por:</h5>
 
-          <%= form_with url: bible_set_category_path, method: :post, local: true do %>
+          <%= form_with url: bible_set_category_path, method: :post,
+                local: true, data: { turbo: false } do %>
 
             <div class="form-check text-start mb-3">
               <%= radio_button_tag :category, "find_chapter",
@@ -47,6 +47,7 @@
             <%= submit_tag "Continuar",
               class: "btn btn-warning w-100 fw-bold text-dark" %>
           <% end %>
+
         </div>
       </div>
 
