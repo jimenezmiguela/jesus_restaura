@@ -23,7 +23,8 @@
 // CSS Variables (Light default)
 // ============================================
 
-:root {
+:root,
+html[data-theme="light"] {
     --color-bg: #{tokens.$color-body-background};
     --color-text: #{tokens.$color-text};
     --color-link: #{tokens.$color-link};
@@ -49,6 +50,26 @@
 }
 
 // ============================================
+// Dark Mode Variables
+// ============================================
+
+html[data-theme="dark"] {
+    --color-bg: #1e1e1e;
+    --color-text: #f0f0f0;
+
+    --card-bg: #2a2a2a;
+    --card-text: #f0f0f0;
+
+    --alert-bg: #4a1f25;
+    --alert-text: #f8d7da;
+
+    --table-row-alt: #2a2a2a;
+    --table-border: #444;
+
+    --form-border: #555;
+}
+
+// ============================================
 // Global Styles
 // ============================================
 
@@ -65,26 +86,6 @@ a {
 .highlight-blue {
     color: var(--color-highlight-blue);
     font-weight: 600;
-}
-
-// ============================================
-// Dark Mode (checkbox-driven toggle)
-// ============================================
-
-html:has(#theme-toggle:checked) {
-    --color-bg: #1e1e1e;
-    --color-text: #f0f0f0;
-
-    --card-bg: #2a2a2a;
-    --card-text: #f0f0f0;
-
-    --alert-bg: #4a1f25;
-    --alert-text: #f8d7da;
-
-    --table-row-alt: #2a2a2a;
-    --table-border: #444;
-
-    --form-border: #555;
 }
 
 // ============================================

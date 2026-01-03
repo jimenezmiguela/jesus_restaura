@@ -12,7 +12,8 @@
             Ingresa un Versículo <span class="opacity-75">(ejemplo: 3:16)</span>
           </h5>
 
-          <%= form_with url: bible_show_verse_path, method: :post, local: true do %>
+          <%= form_with url: bible_show_verse_path, method: :post,
+                local: true, data: { turbo: false } do %>
             <div class="mb-3">
               <%= text_field_tag :reference, nil,
                 class: "form-control",
@@ -30,33 +31,30 @@
         <div class="alert alert-danger mt-4 text-center">
           <%= @error %>
         </div>
-
       <% elsif @verse.present? %>
         <div class="card border-warning mt-4">
           <div class="card-header bg-warning fw-bold text-dark">
             Resultado de búsqueda:
             <%= session[:book].to_s.capitalize %> <%= @reference %>
           </div>
-
           <div class="card-body card-body-results">
             <pre class="mb-0" style="white-space: pre-wrap;">
 <%= @verse %>
             </pre>
           </div>
+
+          <% if user_signed_in? %>
+            <div class="mt-3 text-center">
+              <%= form_with model: SavedVerse.new, local: true do |f| %>
+                <%= f.hidden_field :book, value: session[:book] %>
+                <%= f.hidden_field :chapter, value: @reference.split(":").first %>
+                <%= f.hidden_field :verse, value: @reference.split(":").last %>
+                <%= f.submit "📌 Guardar Versículo",
+                  class: "btn btn-outline-success mt-2" %>
+              <% end %>
+            </div>
+          <% end %>
         </div>
-
-        <% if user_signed_in? %>
-          <div class="mt-3 text-center">
-            <%= form_with model: SavedVerse.new, local: true do |f| %>
-              <%= f.hidden_field :book, value: session[:book] %>
-              <%= f.hidden_field :chapter, value: @reference.split(":").first %>
-              <%= f.hidden_field :verse, value: @reference.split(":").last %>
-
-              <%= f.submit "📌 Guardar Versículo",
-                class: "btn btn-outline-success mt-2" %>
-            <% end %>
-          </div>
-        <% end %>
       <% end %>
 
     </div>

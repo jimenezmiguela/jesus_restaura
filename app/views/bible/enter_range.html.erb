@@ -12,15 +12,14 @@
             Ingresa Versículos de comenzar y terminar
           </h5>
 
-          <%= form_with url: bible_show_range_path, method: :post, local: true do %>
+          <%= form_with url: bible_show_range_path, method: :post,
+                local: true, data: { turbo: false } do %>
             <div class="mb-3">
               <%= text_field_tag :starting_verse, nil,
                 class: "form-control",
                 placeholder: "Comenzar ejemplo: 3:16",
                 autofocus: true %>
-
               <div class="mt-2"></div>
-
               <%= text_field_tag :ending_verse, nil,
                 class: "form-control",
                 placeholder: "Terminar ejemplo: 3:19" %>
@@ -36,7 +35,6 @@
         <div class="alert alert-danger mt-4 text-center">
           <%= @error %>
         </div>
-
       <% elsif @range.present? %>
         <div class="card border-warning mt-4">
           <div class="card-header bg-warning fw-bold text-dark">
@@ -44,36 +42,31 @@
             <%= session[:book].to_s.capitalize %>
             <%= @starting_verse %> a <%= @ending_verse %>
           </div>
-
           <div class="card-body card-body-results">
             <pre class="mb-0" style="white-space: pre-wrap;">
 <%= @range %>
             </pre>
           </div>
+
+          <% if user_signed_in? %>
+            <div class="mt-3 text-center">
+              <%= form_with model: SavedSection.new, url: saved_sections_path,
+                    local: true do |f| %>
+                <%= f.hidden_field :title,
+                  value: "#{session[:book].to_s.capitalize} #{@starting_verse}–#{@ending_verse}" %>
+                <%= f.hidden_field :description,
+                  value: "Sección seleccionada desde la Biblia" %>
+                <%= f.hidden_field :content, value: @range %>
+                <div class="mb-3 text-start">
+                  <%= f.label :note, "Nota Personal (opcional)", class: "form-label" %>
+                  <%= f.text_area :note, rows: 3, class: "form-control" %>
+                </div>
+                <%= f.submit "📌 Guardar Sección",
+                  class: "btn btn-outline-success" %>
+              <% end %>
+            </div>
+          <% end %>
         </div>
-
-        <% if user_signed_in? %>
-          <div class="mt-3 text-center">
-            <%= form_with model: SavedSection.new,
-                url: saved_sections_path,
-                local: true do |f| %>
-
-              <%= f.hidden_field :title,
-                value: "#{session[:book].to_s.capitalize} #{@starting_verse}–#{@ending_verse}" %>
-              <%= f.hidden_field :description,
-                value: "Sección seleccionada desde la Biblia" %>
-              <%= f.hidden_field :content, value: @range %>
-
-              <div class="mb-3 text-start">
-                <%= f.label :note, "Nota Personal (opcional)", class: "form-label" %>
-                <%= f.text_area :note, rows: 3, class: "form-control" %>
-              </div>
-
-              <%= f.submit "📌 Guardar Sección",
-                class: "btn btn-outline-success" %>
-            <% end %>
-          </div>
-        <% end %>
       <% end %>
 
     </div>
