@@ -12,7 +12,8 @@
             Ingresa una Búsqueda <span class="opacity-75">(ejemplo: fe)</span>
           </h5>
 
-          <%= form_with url: bible_show_search_path, method: :post, local: true do %>
+          <%= form_with url: bible_show_search_path, method: :post,
+                local: true, data: { turbo: false } do %>
             <div class="mb-3">
               <%= text_field_tag :search_term, nil,
                 class: "form-control",
@@ -30,14 +31,12 @@
         <div class="alert alert-danger mt-4 text-center">
           <%= @error %>
         </div>
-
       <% elsif @search_results.present? %>
         <div class="card border-warning mt-4">
           <div class="card-header bg-warning fw-bold text-dark">
             Resultados de “<%= @search_term %>” en
             <%= session[:book].to_s.capitalize %>
           </div>
-
           <div class="card-body card-body-results">
             <% @search_results.each do |verse| %>
               <% highlighted =
@@ -45,7 +44,6 @@
                   /(#{Regexp.escape(@search_term)})/i,
                   '<span class="highlight-blue">\1</span>'
                 ).html_safe %>
-
               <p><%= highlighted %></p>
             <% end %>
           </div>

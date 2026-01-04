@@ -13,7 +13,8 @@
             Ingresa un Capítulo (ejemplo: 3)
           </h5>
 
-          <%= form_with url: bible_show_chapter_path, method: :post, local: true do %>
+          <!-- 🔹 Fix: disable Turbo to force full page reload so controller vars render -->
+          <%= form_with url: bible_show_chapter_path, method: :post, local: true, data: { turbo: false } do %>
             <div class="input-group mb-3">
               <%= text_field_tag :chapter, nil,
                 class: "form-control",
