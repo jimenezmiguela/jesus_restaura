@@ -1,4 +1,5 @@
 @use "primitives" as *;
+@use "sass:color";
 
 /* ============================================
    Semantic Tokens (INTENT-BASED)
@@ -17,7 +18,7 @@ $color-navbar-footer-text: $white;
 
 /* Buttons – centralized yellow warning style */
 $color-btn-primary-bg: #ffc107; // yellow
-$color-btn-primary-hover-bg: darken(#ffc107, 10%);
+$color-btn-primary-hover-bg: color.adjust(#ffc107, $lightness: -10%);
 $color-btn-primary-text: #ffffff; // white text for all buttons
 
 /* Cards */
