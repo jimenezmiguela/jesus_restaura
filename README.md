@@ -71,3 +71,9 @@ Key considerations:
 ## Status
 
 Actively maintained. See `CHANGELOG.md` for detailed version history and recent improvements.
+
+---
+
+## Local Development
+
+Basic setup instructions are available in `docs/SETUP.md`.
