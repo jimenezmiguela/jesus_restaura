@@ -1,9 +1,8 @@
-This repository represents a production Ruby on Rails application, structured and deployed in the same way I build and maintain client projects.
-
 # Bible Reader (Web, API, PWA)
 
-A Ruby on Rails application providing a Bible reader with full web, API, and installable Progressive Web App (PWA) support.
+This repository represents a production Ruby on Rails application, structured and deployed in the same way I build and maintain client projects.
 
+A Ruby on Rails application providing a Bible reader with full web, API, and installable Progressive Web App (PWA) support.
 
 Live application: https://jesusrestaura.com/
 
@@ -55,6 +54,7 @@ It is actively maintained and deployed in production using Dokku.
 The application is deployed on **Dokku** with environment-based configuration.
 
 Key considerations:
+
 - Environment variables for credentials and secrets
 - Precompiled assets in production
 - Database-backed sessions and persistence
@@ -76,4 +76,5 @@ Actively maintained. See `CHANGELOG.md` for detailed version history and recent 
 
 ## Local Development
 
-Basic setup instructions are available in `docs/SETUP.md`.
+For developers who want to run the application locally, complete setup instructions are available in [`docs/SETUP.md`](docs/SETUP.md).  
+This includes cloning the repository, installing dependencies, building assets, setting up the database, running the server, and executing tests.
