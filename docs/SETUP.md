@@ -26,8 +26,8 @@ The production application is deployed using Dokku and follows a different confi
 ## Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/repo-name.git
-cd repo-name
+git clone https://github.com/jimenezmiguela/jesus_restaura.git
+cd jesus_restaura
 ```
 
 ---
