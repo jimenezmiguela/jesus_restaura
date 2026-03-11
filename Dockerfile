@@ -24,8 +24,8 @@ RUN apt-get update -qq && \
     pkg-config \
     libpq-dev \
     nodejs \
-    yarn \
-    curl
+    curl && \
+    npm install -g yarn
 
 # Install Ruby gems
 COPY Gemfile Gemfile.lock ./
