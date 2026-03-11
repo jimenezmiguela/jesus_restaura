@@ -1,4 +1,4 @@
-# syntax = docker/dockerfile:1
+# syntax=docker/dockerfile:1
 
 ARG RUBY_VERSION=3.1.3
 FROM ruby:$RUBY_VERSION-slim AS base
@@ -13,48 +13,48 @@ ENV RAILS_ENV=production \
 # -------- BUILD STAGE --------
 FROM base AS build
 
-# 🔑 Accept RAILS_MASTER_KEY as build argument
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 
+# Install system dependencies
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-    build-essential \
-    git \
-    pkg-config \
-    libpq-dev \
-    nodejs \
-    curl && \
+      build-essential \
+      git \
+      pkg-config \
+      libpq-dev \
+      nodejs \
+      npm \
+      curl && \
     npm install -g yarn
 
 # Install Ruby gems
 COPY Gemfile Gemfile.lock ./
-RUN bundle install && \
-    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
-    bundle exec bootsnap precompile --gemfile
+RUN bundle install
 
-# Copy application source code
+# Copy app source
 COPY . .
 
-# Precompile app code (requires RAILS_MASTER_KEY to be set in Dokku)
-RUN bundle exec bootsnap precompile app/ lib/
+# Precompile bootsnap and Rails assets
+RUN bundle exec bootsnap precompile
 RUN ./bin/rails assets:precompile
 
 # -------- FINAL STAGE --------
 FROM base
 
+# Runtime dependencies
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-    libpq5 \
-    postgresql-client \
-    curl && \
+      libpq5 \
+      postgresql-client \
+      curl && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
-# Copy everything from build
+# Copy built gems and app from build stage
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
-# Set ownership and permissions
+# Set permissions
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails log tmp db
 
@@ -63,5 +63,4 @@ USER rails:rails
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 EXPOSE 3000
-
 CMD ["./bin/rails", "server"]
