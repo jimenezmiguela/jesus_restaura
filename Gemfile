@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.7.6'
+ruby '3.1.3'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.1.5', '>= 7.1.5.1'
+gem "rails", "~> 7.2"
 
 # Add pg gem and activerecord
 gem 'pg', '~> 1.4'
@@ -20,9 +20,6 @@ gem 'invisible_captcha', '~> 2.3.0'
 # Acts as Rack middleware, sitting in front of your app to filter requests before they hit core logic, using a cache (like Redis) for state management
 gem 'rack-attack'
 
-# Use Importmap features (like javascript_include_tag ... type: "module" and ES module imports)
-gem 'importmap-rails'
-
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
@@ -30,6 +27,7 @@ gem 'sprockets-rails'
 gem 'puma', '>= 5.0'
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+# Use Importmap features (like javascript_include_tag ... type: "module" and ES module imports)
 gem 'importmap-rails'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
@@ -84,3 +82,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem "cssbundling-rails", "~> 1.4"
