@@ -1,5 +1,6 @@
-# syntax=docker/dockerfile:1
+# syntax = docker/dockerfile:1
 
+# -------- BASE IMAGE --------
 ARG RUBY_VERSION=3.1.3
 FROM ruby:$RUBY_VERSION-slim AS base
 
@@ -13,48 +14,50 @@ ENV RAILS_ENV=production \
 # -------- BUILD STAGE --------
 FROM base AS build
 
+# Accept RAILS_MASTER_KEY as build arg
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 
-# Install system dependencies
+# Install system dependencies, Node.js, npm, and Yarn
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
       build-essential \
       git \
       pkg-config \
       libpq-dev \
-      nodejs \
-      npm \
       curl && \
-    npm install -g yarn
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g yarn && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install Ruby gems
+# Copy Ruby dependencies first to leverage Docker cache
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
+RUN gem install bundler:2.6.9 && bundle install
 
-# Copy app source
+# Copy the rest of the application
 COPY . .
 
-# Precompile bootsnap and Rails assets
+# Precompile bootsnap and assets
 RUN bundle exec bootsnap precompile
-RUN ./bin/rails assets:precompile
+RUN bin/rails assets:precompile
 
 # -------- FINAL STAGE --------
 FROM base
 
-# Runtime dependencies
+# Install only runtime dependencies
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
       libpq5 \
       postgresql-client \
       curl && \
-    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
+    rm -rf /var/lib/apt/lists/*
 
-# Copy built gems and app from build stage
+# Copy Ruby gems and app from build stage
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
-# Set permissions
+# Set ownership
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails log tmp db
 
