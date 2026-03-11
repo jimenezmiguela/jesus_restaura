@@ -7,6 +7,26 @@ This project follows Semantic Versioning.
 
 ---
 
+## v1.6.0 - 2026-03-11
+### Upgraded
+- Ruby upgraded to 3.1.3 to satisfy Rails 7.2 requirements
+- Rails upgraded from 7.1.5 to 7.2.3
+
+### Changed
+- Merged Rails 7.2 default environment and initializer updates for development, test, and production
+- Updated `bin/setup` to Rails 7.2 template, now running `db:prepare` automatically
+- Updated asset and filter parameter initializers to match Rails 7.2 defaults
+
+### Added
+- New Rails 7.2 initializers: CORS, new framework defaults
+- Default public assets (PWA icons, 406 unsupported browser page)
+
+### Verified
+- All RSpec tests pass
+- No deprecation warnings on server startup
+
+---
+
 ## v1.5.1 - 2026-01-23
 ### Fixed
 - Standardized SCSS compilation using Dart Sass via `cssbundling-rails`
