@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.7.6'
+ruby '3.1.3'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.1.5', '>= 7.1.5.1'
+gem "rails", "~> 7.2"
 
 # Add pg gem and activerecord
 gem 'pg', '~> 1.4'
