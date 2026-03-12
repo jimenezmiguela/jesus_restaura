@@ -17,15 +17,16 @@ FROM base AS build
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 
+# Install system dependencies
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
       build-essential \
       git \
       pkg-config \
       libpq-dev \
-      nodejs \
-      npm \
       curl && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
     npm install -g yarn && \
     rm -rf /var/lib/apt/lists/*
 
