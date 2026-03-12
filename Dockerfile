@@ -34,6 +34,9 @@ RUN gem install bundler:2.6.9 && bundle install
 # Copy app
 COPY . .
 
+# Install JS dependencies for cssbundling
+RUN yarn install
+
 # Precompile
 RUN bundle exec bootsnap precompile
 RUN bin/rails assets:precompile
