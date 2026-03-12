@@ -17,14 +17,16 @@ FROM base AS build
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 
-# Install system dependencies (no Node/Yarn needed)
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
       build-essential \
       git \
       pkg-config \
       libpq-dev \
+      nodejs \
+      npm \
       curl && \
+    npm install -g yarn && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Ruby gems
@@ -34,7 +36,8 @@ RUN gem install bundler:2.6.9 && bundle install
 # Copy app
 COPY . .
 
-# Install JS dependencies for cssbundling
+# Install JS deps
+COPY package.json yarn.lock ./
 RUN yarn install
 
 # Precompile
@@ -46,14 +49,9 @@ FROM base
 
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-      build-essential \
-      git \
-      pkg-config \
-      libpq-dev \
-      nodejs \
-      npm \
+      libpq5 \
+      postgresql-client \
       curl && \
-    npm install -g yarn && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /usr/local/bundle /usr/local/bundle
