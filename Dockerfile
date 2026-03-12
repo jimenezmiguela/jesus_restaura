@@ -14,11 +14,10 @@ ENV RAILS_ENV=production \
 # -------- BUILD STAGE --------
 FROM base AS build
 
-# Accept RAILS_MASTER_KEY as build arg
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
 
-# Install system dependencies, Node.js, npm, and Yarn
+# Install system dependencies (no Node/Yarn needed)
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
       build-essential \
@@ -26,26 +25,22 @@ RUN apt-get update -qq && \
       pkg-config \
       libpq-dev \
       curl && \
-    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs && \
-    npm install -g yarn && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy Ruby dependencies first to leverage Docker cache
+# Install Ruby gems
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundler:2.6.9 && bundle install
 
-# Copy the rest of the application
+# Copy app
 COPY . .
 
-# Precompile bootsnap and assets
+# Precompile
 RUN bundle exec bootsnap precompile
 RUN bin/rails assets:precompile
 
 # -------- FINAL STAGE --------
 FROM base
 
-# Install only runtime dependencies
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
       libpq5 \
@@ -53,11 +48,9 @@ RUN apt-get update -qq && \
       curl && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy Ruby gems and app from build stage
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
-# Set ownership
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails log tmp db
 
