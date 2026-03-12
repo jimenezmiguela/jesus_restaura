@@ -43,9 +43,14 @@ FROM base
 
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-      libpq5 \
-      postgresql-client \
+      build-essential \
+      git \
+      pkg-config \
+      libpq-dev \
+      nodejs \
+      npm \
       curl && \
+    npm install -g yarn && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /usr/local/bundle /usr/local/bundle
